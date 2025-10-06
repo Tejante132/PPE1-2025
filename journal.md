@@ -163,9 +163,35 @@ On enlève de la synchro git un potentiel fichier qui nous embête `.DS_STORE` g
 echo ".DS_STORE" >> .gitignore
 ```
 
+Note : il faut commit normalement avant d'appliquer un **tag** sur un commit.
+```sh
+clotilde@clotilde-Aspire:~/Documents/Obsidian Vault/Obsidian-Plurital/S7/PPE1-2025$ git commit -m "commit fin exo pour tester le tag"
+[main ac78641] commit fin exo pour tester le tag
+ 2 files changed, 170 insertions(+)
+ create mode 100644 .gitignore
+```
+
 Et pour finir on crée un tag et on le push (cf [[git tag]], notes de [[Cours 2 PPE git]]) : nom du tag "gitinto" et message "version finie intro git".
 
 ```sh
 git tag -m "version finie intro git" gitinto
 git push origin gitinto
 ```
+
+Qui nous affiche : 
+```sh
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (5/5), 4.21 KiB | 4.21 MiB/s, done.
+Total 5 (delta 0), reused 0 (delta 0), pack-reused 0
+To github.com:Tejante132/PPE1-2025.git
+ * [new tag]         gitinto -> gitinto
+```
+
+Maintenant on va regarder sur GitHub ce que ça a donné pour le lien.
+
+**Question : si je veux rajouter des modifications au tag, est-ce que c'est possible ?? pour avoir des versions 1.x par exemple.** 
+
+On va tester voir, mais je pense qu'un tag ne peux être qu'unique, donc par exemple ce serait à moi de nommer le tag différemment, par exemple avec un nouveau tag qui s'appelle "gitinto.1" (avec un versionnement mineur de la version gitinto).
