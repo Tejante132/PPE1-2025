@@ -195,3 +195,18 @@ Maintenant on va regarder sur GitHub ce que ça a donné pour le lien.
 **Question : si je veux rajouter des modifications au tag, est-ce que c'est possible ?? pour avoir des versions 1.x par exemple.** 
 
 On va tester voir, mais je pense qu'un tag ne peux être qu'unique, donc par exemple ce serait à moi de nommer le tag différemment, par exemple avec un nouveau tag qui s'appelle "gitinto.1" (avec un versionnement mineur de la version gitinto).
+
+Effectivement ce n'était pas possible de juste refaire un `git tag -m "bla" gitinto`:
+```sh
+fatal: tag 'gitinto' already exists
+```
+
+Donc à la place j'ai fait : 
+```sh
+git tag -m "test de modifications sur un tag deja push" gitinto.1
+git push origin gitinto.1
+```
+En créant donc un nouveau tag.
+
+La question que je me pose par contre maintenant c'est si je pouvais commit et push directement dans un tag déjà existant, sans réutiliser la commande `git tag`.
+
