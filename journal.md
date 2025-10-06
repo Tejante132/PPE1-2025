@@ -210,3 +210,15 @@ En créant donc un nouveau tag.
 
 La question que je me pose par contre maintenant c'est si je pouvais commit et push directement dans un tag déjà existant, sans réutiliser la commande `git tag`.
 
+Ça semble avoir marché !
+```sh
+clotilde@clotilde-Aspire:~/Documents/Obsidian Vault/Obsidian-Plurital/S7/PPE1-2025$ git commit -m "encore un test pour modifier un tag"
+[main c49d815] encore un test pour modifier un tag
+ 1 file changed, 16 insertions(+), 1 deletion(-)
+clotilde@clotilde-Aspire:~/Documents/Obsidian Vault/Obsidian-Plurital/S7/PPE1-2025$ git push origin gitinto
+Everything up-to-date
+```
+
+Spoiler non en fait c'est l'ancienne version qui est en ligne.
+
+Mais partie fun : en fait il faut continuer à push normal dans le main à côté des tags, parce que là la version du main est à jour d'il y a 53 minutes alors que mon tag est à jour d'il y a 12min.
