@@ -222,3 +222,5 @@ Everything up-to-date
 Spoiler non en fait c'est l'ancienne version qui est en ligne.
 
 Mais partie fun : en fait il faut continuer à push normal dans le main à côté des tags, parce que là la version du main est à jour d'il y a 53 minutes alors que mon tag est à jour d'il y a 12min.
+
+Note : je pense que le but c'était de l'appeler gitintro donc mon dernier sera gitintro ;)
