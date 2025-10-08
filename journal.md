@@ -43,15 +43,60 @@ Pour la suite j'ai juste pris mes notes de cours dans Obsidian.
 [[Cours 1 PPE Unix]]
 [[Cours 2 PPE git]]
 
+---
+
+## Exercice 1 : créer une arborescence pour classer les documents
+Ici : [[unix.pdf#page=23&selection=0,0,0,8|unix, page 23]]
+
+On a téléchargé une archive .zip qu'on a unzip avec `unzip`.
+
+Après avoir trié les images dans `img/`, les documents dans `docs/`, les annotations dans `ann`, et les textes dans `txt`, je recrée des sous-dossiers en triant par nom : 
+- Pour les textes et annotations, je lis la date indiquée pour mettre dans le dossier correspondant.
+- Pour les images, je cherche les expressions dans le nom des fichiers qui me donnent une indication sur le lien (Paris ou Tokyo) avec [[grep]].
+```sh
+ls | grep Tokyo
+```
+Qui renvoie : 
+```sh
+0-Paris,Tokyo2.JPG
+0-Tokyo!_film_poster.jpg
+100-Tokyo_Reverie.jpg
+101-Tokyo_Road_best_of_Bon_Jovi.jpg
+102-Tokyo_Sando_logo.png
+103-Tokyo_Seikatsusha_Network.png
+104-Tokyo_Sports.jpg
+105-Tokyo_Sungoliath_logo.jpg
+106-Tokyo_Super_Wars_official_poster.jpg
+...
+```
+
+Et toutes ces lignes, on va les bouger dans le sous-dossier `Tokyo/`.
+Mais en fait là tout de suite je suis pas encore assez au point sur les [[pipe]] pour les commandes à plusieurs arguments pour faire ça avec `grep` (il faudrait que j'utilise la sortie de grep comme premier argument de `mv` et que je puisse ensuite indiquer le sous-dossier `Toyko/`).
+Donc pour le moment on va tout faire avec des [[caractères de remplacement]] ! :p
+
+```sh
+ls *Tokyo*
+```
+
+*Note :* les deux commandes nous donnent bien les mêmes résultats ici (j'ai vérifié avec le nombre de résultats `ls | grep Tokyo | wc -l` vs `ls *Tokyo* | wc -l`).
+
+Donc, après avoir créé le sous-dossier  `Tokyo/`, j'ai lancé :
+```sh
+mv *Tokyo* Tokyo/
+```
+- [ ] Bon, petit souci annoncé qui est donc qu'en théorie j'essaie aussi de déplacer l dossier `Tokyo/` dans lui-même (action qui échoue heureusement). Ce serait peut-être bien que je trouve une *option sur mv* pour mettre une exception (p.ex : pas les dossiers, ou pas un certain fichier).
+
+Après globalement j'ai finalement décidé de faire un petit script qui permet de re-ranger les fichiers dans les dossiers adaptés, avec des [[boucles en bash]].
+
 
 ---
 
-## Mon 06.10.2025 : Exercice git, manipulation de fichiers
+## Mon 06.10.2025 : Exercice git, manipulation de fichiers, tag
 
 [[git-intro-exercices.pdf]]
 Mon 06.10.2025
 
-Création d'un repo git dans lequel on mettra le [[journal de bord PPE]]. 
+Création d'un repo git dans lequel on mettra le [[journal]]. 
 Concrètement moi je vais déplacer mes notes faites dans Obsidian dans un repo public pour les profs. Ou peut-être juste les notes d'exercices/projet ..?
 
 Lien vers mon repo : https://github.com/Tejante132/PPE1-2025.git 
@@ -224,3 +269,21 @@ Spoiler non en fait c'est l'ancienne version qui est en ligne.
 Mais partie fun : en fait il faut continuer à push normal dans le main à côté des tags, parce que là la version du main est à jour d'il y a 53 minutes alors que mon tag est à jour d'il y a 12min.
 
 Note : je pense que le but c'était de l'appeler gitintro donc mon dernier sera gitintro ;)
+
+---
+
+## Wed 08.10.2025 - Exos scripts bash
+cf [[bash|scripts bash]] (mes notes perso sous Obsidian)
+
+On lit les nouvelles slides de [[unix.pdf#page=26&selection=2,0,2,2|unix, page 26]] sur les lignes de commandes -> scripts.
+Introduction aux différents [[flux d'entrée-sorties standard]] et [[redirection vers et depuis des fichiers]].
+
+Mes points de doute : 
+- [x] pas 100% sûre là comme ça de comment on utilise `<` (par contre les `>` sont bien clairs)  [completion:: 2025-10-08]
+	-> *exemple :* `wc < fic.txt` : on redirige le contenu du fichier `fic.txt` dans le stdin.
+- [ ] pour la [[redirection vers et depuis des fichiers]] : vérifier si la redirection de la sortie d'erreur se fait avec `&<`, `<&` ou les deux ?
+- [ ] `wc` : le nom laisse entendre que ça compte les mots, mais je crois qu'en réalité ça compte plutôt les lignes. Tester avec et sens option `-l`.
+
+
+On va fair des manipulation sur les [[fichiers .ann]] utilisés à la séance précédente.
+
