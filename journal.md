@@ -88,6 +88,30 @@ mv *Tokyo* Tokyo/
 
 Après globalement j'ai finalement décidé de faire un petit script qui permet de re-ranger les fichiers dans les dossiers adaptés, avec des [[boucles en bash]].
 
+Wed 15.10.2025
+Finalement j'ai refait le tri avec ce petit script. 
+
+```sh
+#!/bin/bash
+for ANNEE in 2016 2017 2018; do
+    
+    # premier gros tri par année
+    mkdir $ANNEE
+    mv ${ANNEE}* ${ANNEE}/
+
+    # sous tri par mois
+    cd $ANNEE
+    for month in {01..12}; do
+        mkdir $month
+        # mv ${dossier}_${month}* $month/
+        mv ${ANNEE}_${month}* $month/
+    done
+    cd ..
+done
+```
+
+Il faut vraiment faire bien attention aux utilisations de variables dans un nom "composé" de chemin. Par exemple, quand je faisais `mv $ANNEE_${month}* $month/` ça ne marchait pas : il faut bien mettre les accolades autour de `${ANNEE}`.
+
 
 ---
 
@@ -284,6 +308,49 @@ Mes points de doute :
 - [ ] pour la [[redirection vers et depuis des fichiers]] : vérifier si la redirection de la sortie d'erreur se fait avec `&<`, `<&` ou les deux ?
 - [ ] `wc` : le nom laisse entendre que ça compte les mots, mais je crois qu'en réalité ça compte plutôt les lignes. Tester avec et sens option `-l`.
 
-
 On va fair des manipulation sur les [[fichiers .ann]] utilisés à la séance précédente.
+-> Avant ça je suis allée finir le tri parce que je ne l'avais pas fait, comme je savais déjà faire (déjà fait un peu de bash dans mes études d'ingé) et que je ne savais pas qu'on en aurait besoin.....
 
+Wed 15.10.2025
+### Ex 1 scripts -exos (cours unix.pdf) 
+**But**
+- Écrire un script qui compte les entités *pour une année* un type d’entité donnés en argument du programme
+	- on va utiliser `grep` et `wc` avec un argument donné du style `txt` ou `ann`.
+	- je crée aussi une variable avec le type d'entité
+- Écrire un second script qui lance le script précédent trois fois, une fois pour chaque années, en prenant le type d’entité en argument.
+	- pour ça, on fait une boucle for sur les trois années.
+Dans la boucle, j'utilise : 
+```sh
+ls -l $ANNEE/* | grep ".${ENTITE}" | wc -l
+```
+
+**Mes points de difficulté :** 
+- au début j'ai créé une variable avec une affectation mal rédigée, puisque j'ai mis des espaces autour du `=`... attention à bien coller comme ça : `ENTITE=$1`.
+- somehow ça me compte rien, je ré-essaie... -> le souci était que j'avais fait `ls -l $ANNEE` puis grep etc, mais la seule chose qui était contenue dans chaque répertoire d'année était des sous-dossiers par mois. J'ai donc rajouter le `\*` pour regarder plus loin.
+
+Résultats : 
+```sh
+$ ./ex1_scripts.sh ann
+On va compter les fichiers ann
+Nombre de fichiers .ann en 2016: 
+571
+Nombre de fichiers .ann en 2017: 
+393
+Nombre de fichiers .ann en 2018: 
+227
+```
+
+```sh
+$ ./ex1_scripts.sh txt
+On va compter les fichiers txt
+Nombre de fichiers .txt en 2016: 
+571
+Nombre de fichiers .txt en 2017: 
+393
+Nombre de fichiers .txt en 2018: 
+227
+```
+
+En fait je viens d'apprendre que c'était pas du tout ça l'exercice ! oups ;)
+
+Donc je refais, cette fois-ci avec l'objectif 
