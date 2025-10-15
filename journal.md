@@ -313,6 +313,7 @@ On va fair des manipulation sur les [[fichiers .ann]] utilisés à la séance pr
 
 Wed 15.10.2025
 ### Ex 1 scripts -exos (cours unix.pdf) 
+#### v1 à côté de la plaque
 **But**
 - Écrire un script qui compte les entités *pour une année* un type d’entité donnés en argument du programme
 	- on va utiliser `grep` et `wc` avec un argument donné du style `txt` ou `ann`.
@@ -351,6 +352,53 @@ Nombre de fichiers .txt en 2018:
 227
 ```
 
+---
+#### v2 plus sur le bon chemin
 En fait je viens d'apprendre que c'était pas du tout ça l'exercice ! oups ;)
+Donc je refais, cette fois-ci avec l'objectif de compter à l'intérieur d'un document les [[entité nommée]]s :
 
-Donc je refais, cette fois-ci avec l'objectif 
+**But**
+- Écrire un script qui compte les entités *pour une année* un type d’[[entité nommée]] donnés en argument du programme *(ex : Location, Person, Date, Organization)*
+	- on va utiliser sur des fichierrs ann données `grep` et `wc` avec un argument donné du style Date, Person, ...
+	- je crée aussi une variable avec le type d'EN donné qui sera utilisé dans grep
+- Écrire un second script qui lance le script précédent trois fois, une fois pour chaque années, en prenant le type d’entité en argument.
+	- pour ça, on fait une boucle for sur les trois années.
+
+j'ai fait comme ia : 
+```sh
+EN=$1 # entité nommée
+echo "On va compter les ${EN}s"
+cd ann # on va là où sont rangées les annotations
+for ANNEE in 2016 2017 2018; do
+    # compte les EN pour cette année dans chacun des fichiers
+    echo "On compte les ${EN}s en $ANNEE :"
+    cat $ANNEE/*/* | grep $EN | wc -l
+done
+cd ..
+```
+
+Que j'ai exécuté comme ça:
+```sh
+$ bash ../ex1_scripts.sh Location
+On va compter les Locations
+../ex1_scripts.sh: line 32: cd: ann: No such file or directory
+On compte les Locations en 2016 :
+3144
+On compte les Locations en 2017 :
+2466
+On compte les Locations en 2018 :
+3110
+```
+--> petit souci : j'ai écexuté le programme déjà dans le dossier ann donc c'était pas la peine de mettre un cd ann dans le programme (ou alors j'aurais dû écrire le *chemin absolu* pour que ça marche qu'importe d'où on exécute le programme)
+
+> [!J'ai appris]
+> - que ça marche de faire `cat *` dans un répertoire pour afficher toutes les lignes de toues les fichiers qu'on peut lire dans le répertoire actif (les unes après les autres). Pratique pour grep.
+> - que par contre le rayon d'action de ce genre de commandes c'est uniquement le répertoire acutel (pas sous-dossiers), mais je peux choisir à quelle "profondeur" je veux aller en utilisant un nombre correspondant de `/*/`. Par exemple ici on a une structure `ann/année/mois/fichiers_correspondants.ann`, donc en étant dans `ann`, si je voulais afficher les fichiers ann, je devais afficher tous les mois avec une `*` (cf code).
+
+
+---
+
+### v3 : la fiche d'exos ??
+Boooooooon en fait je viens encore de voir qu'il vallait mieux suivre les exos de la fiche d'exos plutôt que ceux du cours. cf [[01-scripts-exercices.pdf]].
+
+
