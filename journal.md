@@ -445,7 +445,6 @@ On compte les Locations en 2018 :
 
 Top!
 
-
 ### Description de ce qu'il se passe dans le code donné en fin du cours unix 
 
 Annotation d'un code :
@@ -520,6 +519,8 @@ while read -r LINE ; do ... done < monfichier.txt
 ---
 
 ## Wed 22.10.2025 : Web, HTTP, Lynx...
+
+### Lynx
 
 On teste des options de Lynx. 
 1. Récup contenu textuel d'une page pour l'afficher (sans navigation)
@@ -739,3 +740,44 @@ Description de la partie `grep` :
 	- suivi d'un point et espace `\. `
 	- `(http|mailto)` puis soit d'un http (url) soit d'un mailto (adresse-mail)
 
+---
+
+### Curl
+
+Là ou `lynx` récupère le *contenu* d'une page web, les commandes `wget` et `curl` sont là pour récupérer des *pages web complètes avec métadonnées*.
+
+`curl` permet de récupérer des [[métadonnées]] sur la page web, sur les requêtes qu'on envoie. 
+- permet de savoir si la page web est **valide**...
+- concrètement ça se présente comme le code html de la page
+
+```sh
+curl <URL>
+```
+
+Avec `<URL>` une URL vers une page sur le web.
+
+Un exemple intéressant : 
+```sh
+$ curl google.com
+<HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">
+<TITLE>301 Moved</TITLE></HEAD><BODY>
+<H1>301 Moved</H1>
+The document has moved
+<A HREF="http://www.google.com/">here</A>.
+</BODY></HTML>
+```
+-> Ici on voit qu'en réalité quand on tape juste `google.com` ça nous renvoie vers une page google écrite "mieux".
+
+*Note sur le worldwideweb (www)* : de base on voulait différencier les sites sur le worldwideweb (accessibles à tous) de ceux qui peuvent être locaux (genre localhost et tout).
+
+
+**Options :** 
+
+| Option | Rôle                                    | ex                                                               |
+| ------ | --------------------------------------- | ---------------------------------------------------------------- |
+| `-L`   | pour suivre un déplacement/ redirection | par exemple sur `google.com`, ça va sur `http://www.google.com/` |
+| `-i`   | avoir les options d'en-tête / headers   | Location : ...<br>Content-Type : ... (précise le char-set)       |
+
+Les options sont *combinables*.
+
+On peut aussi voir les métadonnées de la requête.
