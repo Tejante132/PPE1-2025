@@ -444,3 +444,298 @@ On compte les Locations en 2018 :
 ```
 
 Top!
+
+
+### Description de ce qu'il se passe dans le code donné en fin du cours unix 
+
+Annotation d'un code :
+```sh
+#!/usr/bin/bash    # shebang
+
+if [ $# - ne 1 ]    # si le nombre total d'arguments n'est pas 1
+then 
+	echo " ce programme demande un argument "  # prévient (msg d'erreur)
+	exit  # interrompt le programme
+fi   # sortie de structure `if`
+
+
+FICHIER_URLS=$1  # affectation de la valeur donnée en argument
+OK=0  # création de deux variables OK et NOK de valeurs 0
+NOK=0 
+
+while read -r LINE ; # je suppose que a veut dire qu'on a de quoi lire  ??? mais c'est qui LINE ici ?
+do 
+	echo "la ligne : $LINE" 
+	if [[ $LINE =∼ ^https?:// ]]  # on teste avec regex si la ligne correspond à une adresse web / un site
+	then 
+		echo " ressemble à une URL valide " 
+		OK = $(expr $OK + 1)  # itéré compte les adresses web valides
+	else 
+		echo " ne ressemble pas à une URL valide "
+		NOK = $(expr $NOK + 1)  # itère le compteur d'URL pas OK
+	fi 
+done < $FICHIER_URLS # ah ben je crois que je sais : les LINES sont lues dans le fichier donné ici à la boucle while...do...done
+
+echo " $OK URLs et $NOK lignes douteuses "
+```
+
+
+*Ce que fait ce code :* 
+- Si le nombre total d'arguments n'est pas 1, prévient qu'il faut un argument et quitte le programme.
+- *... (voir commentaires dans le code)*
+- $FICHIER_URLS donne le chemin vers le fichier texte (==au while read== )
+	- il y a un chevron dans `done < $FICHIER_URLS` 
+	- ici le contenu du fichier est "branché" sur l'entrée standard du done... -> il répond en fait à tout le bloc `while ... do ... done` 
+- `read` -> cf page d'aide pour savoir comment ça marche.. ([[read]])
+
+### `read`
+La commande `read` en Bash est utilisée pour *lire une ligne de texte depuis l'entrée standard (par défaut)* ou un descripteur de fichier, et **l'assigner à une ou plusieurs variables**.
+
+Prend en **argument un nom de variable** et stocke sur l'entrée standard...
+- retourne vrai tant que ça reçoit des choses,
+- une fois que ça arrive au bout du fichier (plus rien dans l'entrée standard) : renvoie faux -> permet de sortir de la boucle 
+
+`read` lit son entrée standard **ligne par ligne** et le **renvoie dans une variable** (ici `LINE`).
+
+**Avec cat et [[pipe|pipeline]]s (`|`) :**
+```sh
+cat monfichier.txt | while read -r LINE; do echo $LINE;
+```
+
+**Avec [[redirection vers et depuis des fichiers|redirection I/O]] (`<`) :**
+```sh
+while read -r LINE;
+do
+	echo $LINE;
+done < monfichier.txt
+```
+
+ou en une ligne :  
+```sh
+while read -r LINE ; do ... done < monfichier.txt
+```
+
+
+
+---
+
+## Wed 22.10.2025 : Web, HTTP, Lynx...
+
+On teste des options de Lynx. 
+1. Récup contenu textuel d'une page pour l'afficher (sans navigation)
+
+Flemme de voir toutes les options de `lynx --help` donc je tente de trier avec `grep`.
+
+```sh
+$ lynx --help | grep "text"
+  -base             prepend a request URL comment and BASE tag to text/html
+  -dont_wrap_pre    inhibit wrapping of text in <pre> when -dump'ing and
+  -justify          do justification of text (off)
+  -list_inline      with -dump, forces it to show links inline with text (off)
+  -preparsed        show parsed text/html with -source and in source view
+  -syslog=text      information for syslog call
+                    trim input text/textarea fields in forms (off)
+```
+-> pas sûre de trouver là... 
+
+2. Retirer la liste des liens d'une page à l'affichage.
+
+```sh
+$ lynx --help | grep "link"
+  -hiddenlinks=[option]
+                    hidden links: options are merge, listonly, or ignore
+  -image_links      toggles inclusion of links for all images (off)
+  -ismap            toggles inclusion of ISMAP links when client-side
+  -link=NUMBER      starting count for lnk#.dat files produced by -crawl (0)
+  -list_decoded     with -dump, forces it to decode URL-encoded links (on)
+  -list_inline      with -dump, forces it to show links inline with text (off)
+  -listonly         with -dump, forces it to show only the list of links (off)
+  -nolist           disable the link list feature in dumps (off)
+  -nonumbers        disable the link/form numbering feature in dumps (off)
+  -number_fields    force numbering of links as well as form input fields (off)
+  -number_links     force numbering of links (off)
+  -prettysrc        do syntax highlighting and hyperlink handling in source
+  -traversal        traverse all http links derived from startfile
+  -underline_links  toggles use of underline/bold attribute for links (off)
+
+```
+--> idem pas trop sûre non-plus...
+
+Les deux possibilités n'ayant pas trop aidé, on peut aussi tenter un `man lynx`.
+
+1. On a trouvé ça : 
+```
+   -dump  dumps the formatted output of  the  default  document  or  those
+		  specified  on  the  command  line  to  standard  output.  Unlike
+		  interactive mode, all documents are processed.  This can be used
+		  in the following way:
+
+			  lynx -dump http://www.subir.com/lynx.html
+
+		  Files specified on the command line are  formatted  as  HTML  if
+		  their  names  end  with one of the standard web suffixes such as
+		  “.htm” or “.html”.  Use the -force_html option to  format  files
+		  whose names do not follow this convention.
+```
+
+Possible d'aller vérifier son rôle en utilisant la "recherche" de `man`.
+
+```
+                          SEARCHING
+
+  /pattern          *  Search forward for (N-th) matching line.
+  ?pattern          *  Search backward for (N-th) matching line.
+  n                 *  Repeat previous search (for N-th occurrence).
+  N                 *  Repeat previous search in reverse direction.
+  ESC-n             *  Repeat previous search, spanning files.
+  ESC-N             *  Repeat previous search, reverse dir. & spanning files.
+  ESC-u                Undo (toggle) search highlighting.
+  ESC-U                Clear search highlighting.
+  &pattern          *  Display only matching lines.
+
+```
+
+-> le `&pattern` fait un peu comme grep à l'intérieur du man.
+Le prof a dit qu'on pouvait faire "comme un ctrl+f" sur le web, mais pas trop sûre de comment le faire. utiliser `/pattern` ne me donne que la prochaine ocurrence...
+- ah oui mais ça surligne quand-même toutes les occurrences donc ça permet de voir rapidement.
+
+En utilisant l'option `-dump`, le site s'affiche avec le texte uniquement (les liens sont nuémrotés), puis à la fin une liste qui détaille le lien pour chaque numéro.
+
+```sh
+ lynx -dump plurital.org
+```
+
+Qui renvoie quelque chose du style : 
+```
+   [1][logo.jpg]
+   [2]Accueil [3]Organisation du master [4]Candidatures et inscriptions
+   [5]Rentrée [6]Liste pluriTAL [7]nexTAL - association d'étudiants
+   [8]Archives [9]Annuaire
+   Bienvenue sur le site du master pluriTAL
+
+   Le master pluriTAL est cohabilité entre les trois partenaires suivants
+   : Université Sorbonne Nouvelle, Université Paris Nanterre et INALCO.
+
+   Vous trouverez ici toutes les informations liées à l'organisation du
+   master.
+
+   Vous êtes admis en master ? Rendez-vous dans la section [10]Rentrée
+   pour préparer votre arrivée !
+
+   Pour toute information qui ne serait pas donnée sur le site, merci de
+   contacter les [11]responsables pédagogiques ou l'[12]association
+   nexTAL.
+
+Prochains événements
+
+Rentrée 2025
+
+   Mise-à-jour 8 septembre : une présentation de l'install party est
+   disponible sur la page de rentrée [13][ICI], le lien direct vers la
+   présentation est [14][ICI].
+
+   Pré-rentrée les 10 et 11 septembre 2025 !
+
+   Au programme : réunions d'accueil M1 et M2 👨‍🏫, install party 👩‍💻,
+   intégration M1 🕵️ et pot de rentrée nexTAL pour les M1 et M2 🎉
+
+   Plus d'informations [15]ICI.
+
+   N'hésitez pas à écrire à [16]nextal.contact@gmail.com en cas de
+   question !
+
+               [logo-p3.png] [logo-inalco.png] [logo-p10.png]
+
+   [17]https://pluriTAL.org | pluriTAL ©2023, INALCO, Paris Nanterre,
+   Sorbonne Nouvelle | Site géré par [18]nexTAL
+
+References
+
+   1. https://plurital.org/
+   2. http://plurital.org/index.html
+   3. http://plurital.org/organisation.html
+   4. http://plurital.org/admin.html
+   5. http://plurital.org/rentree.html
+   6. http://plurital.org/groupepluriTAL.html
+   7. http://plurital.org/nextal.html
+   8. http://plurital.org/archives.html
+   9. http://plurital.org/contact.html
+  10. http://plurital.org/rentree.html
+  11. http://plurital.org/contact.html#responsables
+  12. http://plurital.org/nextal.html
+  13. http://plurital.org/rentree.html#install-party
+  14. http://plurital.org/install-party.pdf
+  15. http://plurital.org/rentree.html
+  16. mailto:nextal.contact@gmail.com
+  17. https://plurital.org/
+  18. mailto:nextal.contact@gmail.com
+
+```
+
+2. Enlever les liens
+
+À partir de la version "dumpée" du site web, on peut filtrer avec `-nolist` pour enlever la liste de liens à la fin.
+
+```sh
+lynx -dump -nolist plurital.org
+```
+
+Qui renvoit donc : 
+```
+   [logo.jpg]
+   
+   Accueil Organisation du master Candidatures et inscriptions Rentrée
+   Liste pluriTAL nexTAL - association d'étudiants Archives Annuaire
+   Bienvenue sur le site du master pluriTAL
+
+   Le master pluriTAL est cohabilité entre les trois partenaires suivants
+   : Université Sorbonne Nouvelle, Université Paris Nanterre et INALCO.
+
+   Vous trouverez ici toutes les informations liées à l'organisation du
+   master.
+
+   Vous êtes admis en master ? Rendez-vous dans la section Rentrée pour
+   préparer votre arrivée !
+
+   Pour toute information qui ne serait pas donnée sur le site, merci de
+   contacter les responsables pédagogiques ou l'association nexTAL.
+
+Prochains événements
+
+Rentrée 2025
+
+   Mise-à-jour 8 septembre : une présentation de l'install party est
+   disponible sur la page de rentrée [ICI], le lien direct vers la
+   présentation est [ICI].
+
+   Pré-rentrée les 10 et 11 septembre 2025 !
+
+   Au programme : réunions d'accueil M1 et M2 👨‍🏫, install party 👩‍💻,
+   intégration M1 🕵️ et pot de rentrée nexTAL pour les M1 et M2 🎉
+
+   Plus d'informations ICI.
+
+   N'hésitez pas à écrire à nextal.contact@gmail.com en cas de question !
+
+               [logo-p3.png] [logo-inalco.png] [logo-p10.png]
+
+   https://pluriTAL.org | pluriTAL ©2023, INALCO, Paris Nanterre, Sorbonne
+   Nouvelle | Site géré par nexTAL
+
+```
+
+Et si cette commande `-nolist` n'existait pas, on pourrait regarder de plus près à quoi ressemble le dump. 
+-> En identifiant **à quoi ressemblent les lien**, on peut utiliser des **expressions régulières** ([[expression régulière|Regex]]) pour enlever les liens (https:// ... et adresse-mails).
+
+On peut repérer que dans notre dump, **les liens ressemblent à des lignes avec un numéro**, un point, et le lien.
+```sh
+lynx -dump plurital.org | grep -P '\d+\. (http|mailto)'
+```
+
+Description de la partie `grep` : 
+- option `-P` (pour Pearl ?) permet d'utiliser ici les expressions régulières.
+- `'\d+\. http'`
+	- `\d+` (plusieurs chiffres, *digits*)
+	- suivi d'un point et espace `\. `
+	- `(http|mailto)` puis soit d'un http (url) soit d'un mailto (adresse-mail)
+
