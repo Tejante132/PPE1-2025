@@ -27,9 +27,15 @@
 
 EN=$1 # entité nommée
 
-echo "On va compter les ${EN}s"
+if [ -z  $EN] # aucun argument n'a été donné
+then
+    echo "donnez un type d'entité nommée (ex : Location, Person, Organization) en argument svp"
+    exit
+else
+    echo "On va compter les ${EN}s"
+fi
 
-cd ann # on va là où sont rangées les annotations
+# cd ann # on va là où sont rangées les annotations
 
 for ANNEE in 2016 2017 2018; do
     # compte les EN pour cette année dans chacun des fichiers

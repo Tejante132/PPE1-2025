@@ -399,6 +399,48 @@ On compte les Locations en 2018 :
 ---
 
 ### v3 : la fiche d'exos ??
-Boooooooon en fait je viens encore de voir qu'il vallait mieux suivre les exos de la fiche d'exos plutôt que ceux du cours. cf [[01-scripts-exercices.pdf]].
+Booon en fait je viens encore de voir qu'il vallait mieux suivre les exos de la fiche d'exos plutôt que ceux du cours. cf [[01-scripts-exercices.pdf]].
 
 
+### Ex 2 scripts -exos (cours unix.pdf) 
+- créer un script pour établir le classement des lieux les plus cités. 
+- prendre en argument l’année, le mois et le nombre de lieux à afficher 
+- accepter * pour l’année et le mois.
+
+Outils à utiliser : 
+- tail ??
+- ...
+
+---
+
+## Wed 15.10.2025 - Instructions de contrôle
+
+Petite update du sccript fait pour le tri pour tester le fait de vérifier les arguments. J'ai rajouté au début (avant d'exécuter le reste du code) : 
+```sh
+EN=$1 # entité nommée
+
+if [ -z  $EN] # aucun argument n'a été donné
+then
+    echo "donnez un type d'entité nommée (ex : Location, Person, Organization) en argument svp"
+    exit
+else
+    echo "On va compter les ${EN}s"
+fi
+```
+
+Et testé d'essayer de lancer le script avec et sans EN donnée : 
+```sh
+sh-5.2$ bash ../ex1_scripts.sh 
+donnez un type d'entité nommée (ex : Location, Person, Organization) en argument svp
+sh-5.2$ bash ../ex1_scripts.sh Location
+../ex1_scripts.sh: line 30: [: missing `]'
+On va compter les Locations
+On compte les Locations en 2016 :
+3144
+On compte les Locations en 2017 :
+2466
+On compte les Locations en 2018 :
+3110
+```
+
+Top!
