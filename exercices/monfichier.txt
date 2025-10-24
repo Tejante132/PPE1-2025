@@ -1,0 +1,7 @@
+j'écris des lignes.
+Là c'est une deuxième ligne. Est-ce que tu me vois avec la première ?
+Et moi je suis la troisième.
+
+
+
+Moi je suis la 4ème ligne de texte, mais il y a ds sauts de ligne avant moi. Qu'est-ce que tu vois avec cat et avec echo en me lisant ?

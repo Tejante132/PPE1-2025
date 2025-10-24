@@ -411,6 +411,11 @@ Outils à utiliser :
 - tail ??
 - ...
 
+
+J'avoue m'énerve un peu parce que j'avais fait les exos donnés dans les slides de cours et ils sont légèrement différents de ceux dans la fiche de TD mais sont quand-même proches. :(
+Je verrai si j'ai la foi de refaire exactement le TD pendant les vacances, pour le moment je me concentre sur suivre en direct ce qu'on fait maintenant pour pas prendre de retard.
+
+
 ---
 
 ## Wed 15.10.2025 - Instructions de contrôle
@@ -781,3 +786,77 @@ The document has moved
 Les options sont *combinables*.
 
 On peut aussi voir les métadonnées de la requête.
+
+---
+
+Sinon j'ai pu installer un LSP (Language Server Protocol) avec nodejs et npm pour avoir des informations sur les fonctions que j'utilise dans Kate et ça c'est vraiment hyper pratique !!!
+
+
+### Mini-projet
+
+#### **Exercice 1**
+1. Pourquoi éviter `cat` ?
+   Honnêtement vous avez mentionné ça en cours mais j'ai pas bien compris, seulement entendu je crois que ça avait un rapport avec les retours à la ligne ?
+
+Mais quand j'ai essayé de faire des mini-tests en local pour voir la différence, je ne l'ai pas trop vue.
+J'ai fait : 
+```bash
+cat monfichier.txt | while read -r LINE; do echo "nouvelle ligne ${LINE}"; done
+```
+et 
+```bash
+while read -r LINE; do  echo "nouvelle ligne ${LINE}"; done < monfichier.txt
+```
+
+Et les deux m'ont donné le même résultat : 
+```
+nouvelle ligne j'écris des lignes.
+nouvelle ligne Là c'est une deuxième ligne. Est-ce que tu me vois avec la première ?
+nouvelle ligne Et moi je suis la troisième.
+nouvelle ligne 
+nouvelle ligne 
+nouvelle ligne 
+nouvelle ligne Moi je suis la 4ème ligne de texte, mais il y a ds sauts de ligne avant moi. Qu'est-ce que tu vois avec cat et avec echo en me lisant ?
+```
+
+Mais peut-être que vous ne parliez pas de mettre cat puis pipeline au lieu d'utiliser une redirection, mais plutôt d'utiliser `cat` là où on a utilisé `echo` ?
+Par curiosité j'ai testé ça : 
+```bash
+while read -r LINE; do  cat ${LINE}; done < exercices/monfichier.txt
+```
+Mais ça semble vraiment vraiment pas être quelque chose à faire, car là où `echo` prend en argument une chaine (comme `LINE` ici), `echo`  prend, lui, en argument un nom de fichier. 
+
+Donc là en fait ça a essayé désespérément de lire le contenu de mon petit fichier test comme un chemin:
+```
+cat: "j'écris": No such file or directory
+cat: des: No such file or directory
+cat: lignes.: No such file or directory
+cat: Là: No such file or directory
+cat: "c'est": No such file or directory
+cat: une: No such file or directory
+cat: deuxième: No such file or directory
+cat: ligne.: No such file or directory
+cat: Est-ce: No such file or directory
+cat: que: No such file or directory
+cat: tu: No such file or directory
+cat: me: No such file or directory
+cat: vois: No such file or directory
+cat: avec: No such file or directory
+cat: la: No such file or directory
+cat: première: No such file or directory
+cat: '?': No such file or directory
+cat: Et: No such file or directory
+cat: moi: No such file or directory
+cat: je: No such file or directory
+cat: suis: No such file or directory
+cat: la: No such file or directory
+cat: troisième.: No such file or directory
+
+
+Moi je suis la 4ème ligne de texte, mais il y a ds sauts de ligne avant moi. Qu'est-ce que tu vois avec cat et avec echo en me lisant ?
+```
+
+Conclusion : je ne sais pas.
+
+
+2. Transformer `"urls/fr.txt"` en paramètre du script et valider sa présence.
