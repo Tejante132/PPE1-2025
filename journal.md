@@ -413,19 +413,121 @@ On compte les Locations en 2018 :
 ### v3 : la fiche d'exos ??
 Booon en fait je viens encore de voir qu'il vallait mieux suivre les exos de la fiche d'exos plutôt que ceux du cours. cf [[01-scripts-exercices.pdf]].
 
+> J'avoue m'énerve un peu parce que j'avais fait les exos donnés dans les slides de cours et ils sont légèrement différents de ceux dans la fiche de TD mais sont quand-même proches. :(
+> Je verrai si j'ai la foi de refaire exactement le TD pendant les vacances, pour le moment je me concentre sur suivre en direct ce qu'on fait maintenant pour pas prendre de retard.
 
 ### Ex 2 scripts -exos (cours unix.pdf) 
-- créer un script pour établir le classement des lieux les plus cités. 
-- prendre en argument l’année, le mois et le nombre de lieux à afficher 
-- accepter * pour l’année et le mois.
+- [ ] créer un script pour établir le classement des lieux les plus cités. 
+- [ ] prendre en argument l’année, le mois et le nombre de lieux à afficher 
+- [ ] accepter * pour l’année et le mois.
 
 Outils à utiliser : 
-- tail ??
-- ... #tocomplete 
+- tail ou `head` (sélectionner un certain nombre de lieux)
+- trier ?? `sort` ?? `uniq` !!!
 
+Pour le moment j'ai ça : 
 
-J'avoue m'énerve un peu parce que j'avais fait les exos donnés dans les slides de cours et ils sont légèrement différents de ceux dans la fiche de TD mais sont quand-même proches. :(
-Je verrai si j'ai la foi de refaire exactement le TD pendant les vacances, pour le moment je me concentre sur suivre en direct ce qu'on fait maintenant pour pas prendre de retard.
+```bash
+echo "Nb d'arguments donnés : $#"
+
+if [ $# -ne 3 ] # On n'a pas donné 3 arguments
+then
+    echo "Merci de donner 3 arguments svp : année (2016, 2017, 2018 ou toutes "*"), mois (tous : "*"), nombre de lieux à afficher (classement des lieux les plus cités)"
+    exit
+fi
+
+ANNEE=$1
+MOIS=$2
+NB_LIEUX=$3
+EN="Location" # entité nommée
+
+echo "On va trier les ${NB_LIEUX} ${EN}s les plus mentionnées en ${MOIS} ${ANNEE}."
+
+# Prise en compte de l'astérisque
+cat ann/${ANNEE}/${MOIS}/* | grep "Location" | ... # à compléter
+```
+
+Là j'ai juste la liste de tous les lieux. Pour compter le nombre d'apparition de chaque lieu et les trier par nombre d'apparition, je vais investiguer sur les options de `uniq` et `sort`.
+
+`uniq` possède l'option suivante : 
+```
+  -c, --count           prefix lines by the number of occurrences
+```
+Ce qui serait niquel pour moi comme première liste sur laquelle utiliser `sort`.
+Par contre avant ça il faudrait que je ne garde que la dernière colonne (colonne avec nom du lieu).
+
+Je regarde de plus près le format des annotations. Ligne typique : 
+```
+T7	Location 195 223	18 e arrondissement de Paris
+```
+Avec `TXX` (n° d'annotation) puis **tabulation** puis `<EN_type> XXX XXX` puis **tabulation** puis le nom de l'EN (ce qu'on veut garder).
+
+En cours, on a mentionné la commande `cut` qui a cet effet : 
+
+| Commande | Action                                                                        | Exemple                                          |
+| :------- | :---------------------------------------------------------------------------- | :----------------------------------------------- |
+| `cut`    | Extrait certaines colonnes ou champs d’un texte (par position ou séparateur). | `cut -d',' -f2 data.csv` (extrait la 2ᵉ colonne) |
+Pour mon cas, le délimiteur de colonnes et la tabulation `'\t'`.
+Donc je tente :
+```bash
+cat ann/${ANNEE}/${MOIS}/* | grep "Location" | cut -d$'\t' -f3
+```
+
+(j'ai piqué l'idée du `cut -d$'\t' -f3` [ici](https://unix.stackexchange.com/questions/35369/how-to-define-tab-delimiter-with-cut-in-bash))
+
+Maintenant on y applique `uniq -c` pout compter (`--count`).
+
+```bash
+cat ann/${ANNEE}/${MOIS}/* | grep "Location" | cut -d$'\t' -f3 | uniq -c
+```
+
+Ça ne marche que mollo mollo... puisque je vois par exemple des doublons de Locations : 
+```
+  1 Royaume-Uni
+  1 Ukraine
+  1 Allemagne
+  1 Espagne
+  1 Italie
+  1 France
+  1 Royaume-Uni
+```
+*Extrait du `uniq` : on voit 2 fois Royaume-Uni compté "1 fois.*
+Pourtant, certaines autre lignes ont bien autre chose que 1 (je ne vois que quelques 2, un 4, un 3).
+
+Là en faisant ça:
+```bash
+cat ann/${ANNEE}/${MOIS}/* | grep "Location" | cut -d$'\t' -f3 | uniq -c | sort -bgr
+```
+
+Ça me trie bien d'abord par nombre d'apparition puis par nom de lieu.
+Mais j'ai toujours le souci (maintenant d'autant plus flagrant) des noms présents plusieurs fois mais comptés moins de fois.
+Par exemple je fois 7 fois "Burundi" mais compté comme "4"...
+
+Si vraiment ça ne marche pas, je pourrai lire les valeurs uniques des noms de lieux, et pour chacun chercher le nombre de fois où il apparait. Mais ça ne me sembl pas très efficace.
+
+Je me demande s'il y a le souci de retours de ligne, dû éventuellement à la concaténation de différents documents.
+
+Recherches sur internet...
+Une solution est de **d'abord trier les lignes** avant de les passer dans `uniq`, qui ne compte que les *lignes consécutives qui se répètent*.
+
+```bash
+cat ann/${ANNEE}/${MOIS}/* | grep "Location" | cut -d$'\t' -f3 | sort | uniq -c -i | sort -bgr
+```
+
+Note : l'option `-i` rend insensible à la casse.
+
+Et maintenant, en appliquant `tail -n ${NB_LIEUX}` à la fin, on a notre classement ! 
+
+Exemple d'utilisation : 
+```bash
+$ bash compte_lieux.sh 2018 12 5
+Classement des 5 Locations les plus mentionnées en 12 2018.
+    150 Paris
+    103 france
+     76 Champs-Élysées
+     28 A9
+     24 A7
+```
 
 
 ---

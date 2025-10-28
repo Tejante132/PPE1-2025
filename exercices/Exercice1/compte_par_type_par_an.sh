@@ -23,11 +23,11 @@
 # cd .. # retour $
 
 
-# V2
+# V2 (exos des slides de cours, pas de la fiche de TP)
 
 EN=$1 # entité nommée
 
-if [ -z  $EN] # aucun argument n'a été donné
+if [ -z  $EN ] # aucun argument n'a été donné
 then
     echo "donnez un type d'entité nommée (ex : Location, Person, Organization) en argument svp"
     exit
