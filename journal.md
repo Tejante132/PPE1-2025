@@ -1,3 +1,14 @@
+
+> *Note pour comprendre comment je prends mes notes :*
+> En fait moi de base je prends mes notes de cours via un logiciel qui s'appelle **Obsidian** qui permet de prendre des **notes en markdown** (un peu étendu). 
+> Comme je trouvais ça bête de faire doublon entre mes notes déjà en markdown synchronisée sur un dépôt git perso et celui que vous attendez de nous pour le cours, je fais un compromis : 
+> - j'ai cloné mon dépôt "PPE-2025" dans mon arborescence de fichiers où je prends mes notes de cours, comme ça je peux ouvrir la note actuelle (journal.md) comme mes autres notes via Obsidian. 
+> - Pour m'assurer une bonne intégration et une mise en lien entre mes notes perso et celles que vous nous imposez, **je me fais (pour moi) des liens parfois vers les notes que je prends dans mes notes perso**. Dans Obsidian, ça prend la forme de *double crochets*. Donc si vous voyez par exemple [[Projet de programmation encadré|PPE]] c'est parce que je fais référence à ma note en markdown pour le cours de PPE.
+> - Autres spécificités aux notes telles que je les prends : Obsidian permet quelques options supplémentaires comme les *blocs* (comme le bloc "Attentes" ci-dessous, que vous voyez probablement juste comme un bloc de citation) et les ==surlignage== qui prennent la forme d'un encadrement par des signes égal.
+> - Globalement je vais souvent des liens vers mes notes perso. Par exemple moi de base si en faisant un exo je vois que telle option est pratique à utiliser pour telle fonction, je préfère aller l'écrire directement dans la notre dédié à cette fonction, parce que ça me fait une sorte de "wiki perso" et je retrouve bien plus vite l'info le jour où je veux réutiliser cette fonction. J'avoue je me force un peu à écrire dans le journal du coup, et ça me fait pas mal de doublons... mais bon 🤷 c'est intéressant aussi de pouvoir retracer au jour le jour.
+
+(note écrite a posteriori, répète probablement des trucs du journal)
+
 # Journal de bord du projet encadré
 
 Pour le cours de [[Projet de programmation encadré]].
@@ -13,7 +24,7 @@ Pour le cours de [[Projet de programmation encadré]].
 
 [[git-intro-exercices.pdf#page=3&selection=85,0,93,12|git-intro-exercices, page 3]]
 
-# Mes idées de réalisation / questions 
+### Mes idées de réalisation / questions 
 - markdown ? rédigé sous Obsidian? --> vu que je prends déjà mes notes sous markdown dans Obsidian...
 - [x] voir si c'est possible de partager juste une note de mon repo obsidian (la note active)  [completion:: 2025-10-06]
 	- je vais plutôt créer un nouveau répo git dans lequel je mets uniquement les notes de PPE (cours et exos) en guise de journal de bord
@@ -22,8 +33,8 @@ Pour le cours de [[Projet de programmation encadré]].
 
 ## Wed 24.09.2025 - cours d'intro
 
-Je connais déjà la plupart de ce qu'on apprend (cours avec intro au bash suivi et utilisation pendant mon mémoire l'année dernière + dans ma vie de tous les jours)., Mais comme j'ai tout fait en allemand ou anglais jusqu'ici je suis **contente de l'entendre bien expliqué en français (ma langue maternelle).** :)
-Aussi très contente parce que j'ai découvert le bash expliqué par des allemands ingénieur en génie mécanique, et je trouvais ça vachement moins clair et sympa que quand c'est *expliqué par des intéressés de linguistique* (l'étant moi-même) parce qu'on a plus une approche linguistique (par ex description du bash comme "*langue à verbe initial*").
+Je connais déjà la plupart de ce qu'on apprend (cours avec intro au bash suivi et utilisation pendant mon mémoire l'année dernière + dans ma vie de tous les jours). Mais comme j'ai tout fait en allemand ou anglais jusqu'ici je suis **contente de l'entendre bien expliqué en français (ma langue maternelle).** :)
+Aussi très contente parce que j'ai découvert le bash expliqué par des allemands ingénieur en génie mécanique, et je trouvais ça vachement moins clair et sympa que quand c'est *expliqué par des intéressés de linguistique* (l'étant moi-même) parce qu'on a plus une approche linguistique (par ex. description du bash comme "*langue à verbe initial*").
 
 *Intérêt particulier pour le petit point culture / histoire :)*
 
@@ -45,7 +56,7 @@ Pour la suite j'ai juste pris mes notes de cours dans Obsidian.
 
 ---
 
-## Exercice 1 : créer une arborescence pour classer les documents
+### Exercice 1 : créer une arborescence pour classer les documents
 Ici : [[unix.pdf#page=23&selection=0,0,0,8|unix, page 23]]
 
 On a téléchargé une archive .zip qu'on a unzip avec `unzip`.
@@ -132,7 +143,7 @@ git clone git@github.com:Tejante132/PPE1-2025.git
 
 *Note* : GitHub ne supporte plus de publier les modifications de dépôt via protocole HTTPS pour des raisons de sécurité. Enfin c'est possible mais il faut se connecter à chaque fois, alors qu'*en utilisant l'adresse SSH pour cloner le repo, on s'identifie avec notre [[clé ssh]].*
 
-Lorsqu'on clone un dépôt, **un dossier au nom de ce dépôt est automatiquement créé** dans le dossier courant (où on a effectué la commande `git clone`).
+Lorsqu'on clone un dépôt, **un dossier au nom de ce dépôt est automatiquement créé** dans le dossier courant (où on a effectué la commande `git clone`). 
 
 ---
 
@@ -210,10 +221,10 @@ Changes not staged for commit:
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
-En fait finalement ça nous dit juste qu'on n'est à jour sur le mail, mais qu'on a fait de nouvelles modifications sur `journal.md`. Par contre il nous dit que c'est pas nécessaire d'`add` les changements, mais c'est peut-être dû à l'application que j'utilise pour prendre mes notes, sur lesquels j'exécute automatiquement régulièrement des scripts pour pull, add et push les dernières modifications.
+En fait finalement ça nous dit juste qu'on n'est à jour sur le main, mais qu'on a fait de nouvelles modifications sur `journal.md`. Par contre il nous dit que c'est pas nécessaire d'`add` les changements, mais c'est peut-être dû à l'application que j'utilise pour prendre mes notes, sur lesquels j'exécute automatiquement régulièrement des scripts pour pull, add et push les dernières modifications.
 
 Du coup par curiosité je regarde ce que ça change si je fais `git add .` dans mon dépôt local puis re `git status`.
-Quand je dis `git add .`, rien ne s'affiche --> **parce que je n'ai pas créé de nouveau fichier ? peut-être que `add` / `rm` c'est uniquement pour les nouveaux fichiers, et les `commit` sont pour les changements??**.
+Quand je dis `git add .`, rien ne s'affiche --> **parce que je n'ai pas créé de nouveau fichier ? peut-être que `add` / `rm` c'est uniquement pour les nouveaux fichiers, et les `commit` sont pour les changements??**.--> je pense que le `commit` c'est à la dois ajouts de fichiers et modifications recensées. `add` par contre c'est que pour les nouveaux fichiers.
 
 Maintenant, `git status` donne : 
 ```sh
@@ -232,7 +243,7 @@ On enlève de la synchro git un potentiel fichier qui nous embête `.DS_STORE` g
 echo ".DS_STORE" >> .gitignore
 ```
 
-Note : il faut commit normalement avant d'appliquer un **tag** sur un commit.
+Note : il faut `commit` normalement avant d'appliquer un **tag** sur un commit.
 ```sh
 clotilde@clotilde-Aspire:~/Documents/Obsidian Vault/Obsidian-Plurital/S7/PPE1-2025$ git commit -m "commit fin exo pour tester le tag"
 [main ac78641] commit fin exo pour tester le tag
@@ -290,7 +301,7 @@ Everything up-to-date
 
 Spoiler non en fait c'est l'ancienne version qui est en ligne.
 
-Mais partie fun : en fait il faut continuer à push normal dans le main à côté des tags, parce que là la version du main est à jour d'il y a 53 minutes alors que mon tag est à jour d'il y a 12min.
+Mais partie fun : **en fait il faut continuer à push normal dans le main à côté des tags**, parce que là la version du main est à jour d'il y a 53 minutes alors que mon tag est à jour d'il y a 12min.
 
 Note : je pense que le but c'était de l'appeler gitintro donc mon dernier sera gitintro ;)
 
@@ -359,12 +370,12 @@ Donc je refais, cette fois-ci avec l'objectif de compter à l'intérieur d'un do
 
 **But**
 - Écrire un script qui compte les entités *pour une année* un type d’[[entité nommée]] donnés en argument du programme *(ex : Location, Person, Date, Organization)*
-	- on va utiliser sur des fichierrs ann données `grep` et `wc` avec un argument donné du style Date, Person, ...
+	- on va utiliser sur des fichierrs .ann données `grep` et `wc` avec un argument donné du style Date, Person, ...
 	- je crée aussi une variable avec le type d'EN donné qui sera utilisé dans grep
 - Écrire un second script qui lance le script précédent trois fois, une fois pour chaque années, en prenant le type d’entité en argument.
 	- pour ça, on fait une boucle for sur les trois années.
 
-j'ai fait comme ia : 
+J'ai fait comme ça : 
 ```sh
 EN=$1 # entité nommée
 echo "On va compter les ${EN}s"
@@ -390,10 +401,11 @@ On compte les Locations en 2018 :
 3110
 ```
 --> petit souci : j'ai écexuté le programme déjà dans le dossier ann donc c'était pas la peine de mettre un cd ann dans le programme (ou alors j'aurais dû écrire le *chemin absolu* pour que ça marche qu'importe d'où on exécute le programme)
+--> ou alors encore ! j'aurai pu faire en sorte que le chemin vers le dossier soit un *paramètre du programme* pour que j'adapte selon d'où je lance le programme.
 
 > [!J'ai appris]
-> - que ça marche de faire `cat *` dans un répertoire pour afficher toutes les lignes de toues les fichiers qu'on peut lire dans le répertoire actif (les unes après les autres). Pratique pour grep.
-> - que par contre le rayon d'action de ce genre de commandes c'est uniquement le répertoire acutel (pas sous-dossiers), mais je peux choisir à quelle "profondeur" je veux aller en utilisant un nombre correspondant de `/*/`. Par exemple ici on a une structure `ann/année/mois/fichiers_correspondants.ann`, donc en étant dans `ann`, si je voulais afficher les fichiers ann, je devais afficher tous les mois avec une `*` (cf code).
+> - que ça marche de faire `cat *` dans un répertoire pour afficher **toutes les lignes de toues les fichiers** qu'on peut lire dans le répertoire actif (**les unes après les autres**). Pratique pour grep.
+> - que par contre le rayon d'action de ce genre de commandes c'est uniquement le répertoire acutel (*pas sous-dossiers*), mais je peux choisir à quelle "profondeur" je veux aller en utilisant un nombre correspondant de `/*/`. Par exemple ici on a une structure `ann/année/mois/fichiers_correspondants.ann`, donc en étant dans `ann`, si je voulais afficher les fichiers ann, je devais afficher tous les mois avec une `*` (cf code).
 
 
 ---
@@ -409,7 +421,7 @@ Booon en fait je viens encore de voir qu'il vallait mieux suivre les exos de la 
 
 Outils à utiliser : 
 - tail ??
-- ...
+- ... #tocomplete 
 
 
 J'avoue m'énerve un peu parce que j'avais fait les exos donnés dans les slides de cours et ils sont légèrement différents de ceux dans la fiche de TD mais sont quand-même proches. :(
@@ -450,7 +462,7 @@ On compte les Locations en 2018 :
 
 Top!
 
-### Description de ce qu'il se passe dans le code donné en fin du cours unix 
+### Description de ce qu'il se passe dans le code donné en fin du cours [[unix.pdf]] 
 
 Annotation d'un code :
 ```sh
@@ -519,7 +531,7 @@ ou en une ligne :
 while read -r LINE ; do ... done < monfichier.txt
 ```
 
-
+cf [[read]].
 
 ---
 
@@ -527,7 +539,7 @@ while read -r LINE ; do ... done < monfichier.txt
 
 ### Lynx
 
-On teste des options de Lynx. 
+On teste des options de [[Lynx]]. 
 1. Récup contenu textuel d'une page pour l'afficher (sans navigation)
 
 Flemme de voir toutes les options de `lynx --help` donc je tente de trier avec `grep`.
@@ -856,7 +868,483 @@ cat: troisième.: No such file or directory
 Moi je suis la 4ème ligne de texte, mais il y a ds sauts de ligne avant moi. Qu'est-ce que tu vois avec cat et avec echo en me lisant ?
 ```
 
-Conclusion : je ne sais pas.
+Conclusion : je ne sais pas. 🤷
 
 
 2. Transformer `"urls/fr.txt"` en paramètre du script et valider sa présence.
+
+Code de base : 
+```bash
+while read -r line;
+do
+	echo ${line};
+done < "urls/fr.txt";
+```
+
+Au lieu de mettre directement "urls/fr.txt" dans la redirection, on y glisse un **paramètre donné au script** quand on le lance, et on valide au passage sa présence : 
+
+```bash
+URLS=$1 # paramètre du script (chemin du fichier d'URLs)
+
+while read -r line;
+do
+	echo ${line};
+done < ${URLS} # read lit le fichier en paramètre
+```
+⚠️ au début j'avaisoublié de noter `${URLS}`, j'avais juste mis `URLS` mais c'est pas comme ça qu'on *appelle* les variables en bash.
+
+On peut de plus rajouter au début une boucle `if` avec une condition sur le nombre de paramètres donnés (`$#`) pour **arrêter le code si on n'a pas donné un argument au script** (grâce à `exit`).
+```bash
+# Vérification qu'on a bien un paramètre au script
+if [ $# - ne 1 ] # nombre total d'arguments n'est pas 1
+then
+	echo "Donnez un paramètre (chemin vers fichier avec URLs)"
+	exit
+fi
+```
+
+3. Comment afficher le numéro de ligne avant chaque URL (sur la même ligne, valeurs séparées par des tabulations) ?
+   On peut ajouter un compteur qu'on incrémente à chaque nouvelle `line` (correspondant à des URLs) lue, je suppose.
+
+```bash
+N=0 # compteur d'URL
+URLS=$1
+
+while read -r line;
+do
+	N=$(expr $N + 1) # on utilise la "calculatrice" pour incrémenter N
+	echo -e "${N}\t${line}" # affichage avec tabulation entre le n° et l'URL
+done < ${URLS}
+```
+
+> [!Info] Affichage de caractères spéciaux (tabulations)
+> ⚠️ j'ai du rajouter l'option `-e` à `echo` que je n'avais pas mise de base et qui permet d'activer l'interprétations de caractères échapés (par ex. `\t` pour pettre une tabulation) et ça marche ! SInon ça affichait "\t".
+
+Résultat : 
+```
+1	https://fr.wikipedia.org/wiki/Robot
+2	https://fr.wikipedia.org/wiki/Robot_de_cuisine
+3	fr.wikipedia.org/wiki/Robot_d%27indexation
+4	https://fr.wikipedia.org/wiki/Bot_informatique
+5	https://fr.wikipedia.org/wiki/Atlas_(robot)
+6	https://roboty.magistry.fr
+7	https://fr.wikipedia.org/wiki/Robot_(Leonard_de_Vinci)
+8	https://fr.wiktionary.org/wiki/robot
+9	https://fr.wikipedia.org/wiki/Protocole_d%27exclusion_des_robots
+10	https://fr.wikipedia.org/wiki/Robotique
+```
+
+#### **Exercice 2**
+
+Après l'exo 1, on rajoute des infos à chaque ligne, qu'on va récupérer avec les fonctions qu'on a vues en cours, à savoir ici plutôt [[cURL]], qui permet de récupérer avec l'option `-i` des métadonnées sur le code statut de la requête HTTP (ex : 200 réussite, 5xx serveur) ou sur l'encodage de la page.
+
+Métadonnées à rajouter :
+1. [x] Code HTTP de réponse (gestion des erreurs possible).  [completion:: 2025-10-28]
+2. [x] Encodage de la page (si détecté).  [completion:: 2025-10-28]
+3. [x] Nombre de mots dans la page.  [completion:: 2025-10-28]
+
+.
+1/2. **Code HTTP et encodage de la page**
+
+En utilisant `curl -i <URL>` on récupère des interactions avec le serveur. Je regarde à quoi ressemble une page  : 
+
+```bash
+curl -i https://fr.wikipedia.org/wiki/Robot
+```
+
+Cette ligne donne dans les premières lignes (avant le *contenu* réel de la page) les métadonnées suivantes d'interaction avec le serveur : 
+
+```
+TP/2 200 
+date: Sun, 26 Oct 2025 10:34:32 GMT
+server: ATS/9.2.11
+x-content-type-options: nosniff
+content-language: fr
+accept-ch: 
+last-modified: Wed, 22 Oct 2025 22:42:56 GMT
+content-type: text/html; charset=UTF-8
+age: 23417
+accept-ranges: bytes
+x-cache: cp6015 hit, cp6009 hit/23
+```
+
+Ici on y voit deux lignes qui nous intéressent : 
+
+| Ligne d'intérêt dans l'exemple           | On veut quoi ?                                   |
+| ---------------------------------------- | ------------------------------------------------ |
+| `TP/2 200`                               | Le `200` en fin de ligne = code HTTP de réponse. |
+| `content-type: text/html; charset=UTF-8` | `UTF-8` = encodage de la page.                   |
+
+On peut chercher à les récupérer en utilisant par exemple une [[expression régulière]] appliquée sur la sortie de `curl -i <URL>`. Pour ça, je vais d'abord regarder quelques autres exemples d'URL pour voir le type de formes que peuvent prendre ces lignes d'intérêt et repérer les motifs qui se reproduisent, à chercher avec une regex.
+
+Exemple sur une autre adresse : 
+```
+TP/2 200 
+date: Fri, 24 Oct 2025 19:39:49 GMT
+server: mw-web.eqiad.main-767875d469-7xxss
+x-content-type-options: nosniff
+content-language: fr
+accept-ch: 
+last-modified: Wed, 15 Oct 2025 09:45:57 GMT
+content-type: text/html; charset=UTF-8
+age: 163835
+accept-ranges: bytes
+```
+
+A partie des autres tests faits en cours, j'ai quand-même l'impression qu'on aura toujours : 
+- code HTTP : première ligne (3 digits en fin de ligne après  un espace)
+- encodage : après le mot-clé `charset=` (ex: `charset=ISO-8859-1`, `charset=UTF-8` ).
+
+Dans l'idée, j'aimerais rajouter au code précédent, dans la boucle `while read`, pour chaque ligne, une recherche avec `curl -i <URL>` sur la ligne (`line`) active qui correspond à une URL, pour trouver ce code http et l'encodage.
+
+Une version très simple est juste de récupérer la première ligne (avec [[head]]) puis de [[grep]] sur "charset". 
+Mais en fait je viens de tester par exemple de faire :
+```bash
+curl -i https://fr.wikipedia.org/wiki/Robot | head -n 1
+```
+Et ça ne marche pas vraiment. Ça nous affiche ça : 
+```
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0HTTP/2 200 
+  5  246k    5 13069    0     0  38604      0  0:00:06 --:--:--  0:00:06 38551
+curl: (23) Failure writing output to destination
+```
+
+Cela dit, on y trouve bien la ligne HTTP/2 200.
+
+Dans les autres options que je "connais" de curl, il y a le `-o` pour spécifier un fichier de sortie. Je teste d'écrire le résultat dans un fichier plutôt que le terminal : 
+```bash
+curl -i -o test.txt https://fr.wikipedia.org/wiki/Robot
+```
+Cette fois-ci, quand j'applique `head -n 1 text.txt`, j'obtiens bien ce que je voulais précédemment (`HTTP/2 200`).
+Et `grep "charset" test.txt` me renvoie : 
+```
+content-type: text/html; charset=UTF-8
+<meta charset="UTF-8">
+```
+Pour éviter d'avoir deux fois la même info, j'appliquerai peut-être un `head -n 10` sur la sortie avant de `grep` "charset" pour être sûre d'uniquement cherchet dans les bandeaux informatifs de début (liés à l'option `-i`). Ou alors, je pourrais aussi voir s'il n'y a pas une option pour n'avoir que les headers ?
+
+Mais je me demande s'il ne faut pas aussi avoir une sorte d'option comme la `-dump` de [[lynx]] avant de pouvoir faire des traitements sur le texte des métadonnées.
+Je vois une option : 
+```
+-D, --dump-header <filename>
+  (HTTP  FTP) Write the received protocol headers to the specified
+  file. If no headers are received, the use of this option creates
+  an empty file.
+
+  When used in FTP, the FTP server response lines  are  considered
+  being "headers" and thus are saved there.
+
+  Having  multiple  transfers  in  one set of operations (i.e. the
+  URLs in one -:, --next clause), appends them to the  same  file,
+  separated by a blank line.
+
+```
+En réalité ça n'a pas du tout l'air d'avoir la même action que l'option `-dump` de lynx. Cela dit, si l'idée ici est que je peux par exemple spécifier les "headers" : "HTTP" et "content-type" pour avoir le code de statut et l'encodage, ça peut être vraiment super :D
+
+Après test, il semble que l'option `-D` se présente comme tel : 
+```bash
+curl -D fichier_sortie.txt <URL>
+```
+En écrivant dans `fichier_sortie.txt` uniquement les "headers" (code statut, date, server, ..., content-type, ...)
+
+Une version qui peut marcher pour le moment est de faire un fichier temporaire pour chaque URL (qu'on écrase à chaque nouvelle URL et supprime en fin de script) dans lequel on applique les recherches... Il y a sûrement une version "plus efficace" avec des pipes par exemple pour ne pas avoir à créer de fichier temporaire mais c'est mieux que rien pour le moment.
+
+---
+
+Maintenant qu'on a trouvé des méthodes pour ce qu'on voulait faire, on pimpe un peu la boucle précédente : 
+
+```bash
+N=0 # compteur d'URL
+URLS=$1
+
+while read -r line;
+do
+	N=$(expr $N + 1) # incrément
+	
+	# Nouvelles lignes pour exo 2
+	# On va récupérer les métadonnées en exécutant curl
+	
+	# on extrait les infos des headers dans un fichier temporaire
+	# line est une URL
+	curl -D temp.txt ${line}
+	METADONNEES="temp.txt"
+	
+	CODE_HTTP=$(head -n 1 ${METADONNEES}) # lit la 1ère ligne	
+	CONTENT=$(grep "charset" ${METADONNEES})
+	
+	# on affiche les données extraites espacées par des tabulations
+	echo -e "${N}\t${line}\t${CODE_HTTP}\t${CONTENT}" 
+done < ${URLS}
+
+# on supprime le fichier temporaire créé
+rm temp.txt 
+```
+
+Trucs qui m'embêtent : 
+- en fait quand je fais `-D`, même si ça m'écrit les headers dans un fichier, **ça me met la page dans le terminal** donc ça me bloque un peu ce que je veux voir... solutions possibles : 
+	- rediriger sortie standard vers un autre fichier temporaire que je supprime, pour ne pas polluer ce que je veux afficher
+	- ou voir quelle option me permet de ne rien afficher... -> `-s` silent mode ??
+		- Après cherché un peu plus dans les options, il se trouve qu'en fait l'option `-I` est exactement ce que je cherchais puisqu'elle permet de ne garder que les "headers".
+
+**Utilisation de `-I` puis post-processing**
+En tapant 
+```bash
+curl -I  https://fr.wikipedia.org/wiki/Robot | head -n 1
+```
+J'obtiens : 
+```
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0  246k    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+HTTP/2 200 
+```
+Donc je n'ai pas que la ligne d'intérêt, mais aussi d'autres infos... que je n'ai étonnamment pas quand j'affiche juste `curl -I <URL>`. Je suis un peu perdue là...
+
+En grosse magouilleuse, j'ai voulu voir si je pouvais juste garder uniquement la dernière ligne de ce que je viens d'afficher, alors j'ai fait ça : 
+```bash
+curl -I  https://fr.wikipedia.org/wiki/Robot | head -n 1 | tail -n 1
+```
+Mais ça m'affiche, là encore, ceci : 
+```bash
+curl -I  https://fr.wikipedia.org/wiki/Robot | head -n 1 | tail -n 1
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0  246k    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+HTTP/2 200 
+```
+
+Donc en fait je pense que se mélangent ici le fait que, potentiellement, utiliser `curl` affiche dans tous les cas à l'écran des infos (% Total, % Received, ...), qui s'affiche donc à côté du résultat de `tail`.
+A voir si je ne peux pas réorienter (again) la sortie standard...
+
+... (recherches)
+
+Finalement ça marche de faire ça : 
+```bash
+curl -s -I  https://fr.wikipedia.org/wiki/Robot | head -n 1
+```
+pour avoir juste ça : `HTTP/2 200`.
+
+Le souci de l'option `-D` était que ça me permettait de mettre les infos de headers dans un fichier, et ça affichait dans la sortie standard le corps de la page.
+La version silencieuse `-s` (silent) permet de plus de ne pas afficher les informations de progression de curl (les lignes `% Total`, `% Received`, etc., qui sont écrites sur la sortie d'erreur standard).
+
+En fait plutôt que de faire un fichier temporaire du coup je peux juste rediriger dans le code la sortie standard vers une variable.
+
+Je remplace la boucle `while` comme ça : 
+```bash
+while read -r line;
+do
+	N=$(expr $N + 1) # incrément
+
+	# Nouvelles lignes pour exo 2
+
+	# On va récupérer les métadonnées en exécutant curl (line est une URL)
+	METADONNEES=$(curl -s -I ${line})
+
+	CODE_HTTP=$(echo "${METADONNEES}" | head -n 1 ) # lit la 1ère ligne
+	ENCODING=$(echo "${METADONNEES}" | grep "charset")
+
+	# on affiche les données extraites espacées par des tabulations
+	echo -e "${N}\t${line}\t${CODE_HTTP}\t${ENCODING}"
+
+done < ${URLS};
+```
+
+Ça m'a fait un vraiment drôle de résultat... 
+```
+1	content-type: text/html; charset=UTF-8	HTTP/2 200 
+2	content-type: text/html; charset=UTF-8_cuisine	HTTP/2 200 
+3	fr.wikipedia.org/wiki/Robot_d%27indexation	HTTP/1.1 301 Moved Permanently
+4	content-type: text/html; charset=UTF-8rmatique	HTTP/2 200 
+5	content-type: text/html; charset=UTF-8obot)	HTTP/2 200 
+6	https://roboty.magistry.fr		
+7	content-type: text/html; charset=UTF-8eonard_de_Vinci)	HTTP/2 404 
+8	content-type: text/html; charset=UTF-8	HTTP/2 200 
+9	https://fr.wikipedia.org/wiki/Protocole_d%27exclusion_des_robots	HTTP/2 20content-type: text/html; charset=UTF-8
+10	content-type: text/html; charset=UTF-8e	HTTP/2 200 
+```
+La partie "ENCODING" semble s'être comme "collée sur" l'URL. Je ne sais pas trop d'où c'est venu... mettre des guillements autour de `'${ENCODING}'` ne change rien. En revanche, elle n'écrase que la 2ème colonne (pas le nombre, pas le code HTTP). ...
+
+En parallèle je me suis renseignée sur les Regex, car dans tous les cas j'avais la ligne entière d'info (respectivement "TP/2 200 " et  "content-type: text/html; charset=UTF-8"). Or, moi j'aimerais bien savoir comment récupérer plus finement juste le charset (enfin ce qui suit charset=), ou juste le code digital de la première ligne...
+De plus, dans le cas des erreurs, il peut être intéressant de récupérer aussi le message d'erreur qui suit le code HTTP à 3 chiffres.
+
+Une possibilité : 
+```bash
+curl -s -I <URL> | grep -i 'content-type:' | grep -oP 'charset=\K[^; ]+'
+```
+
+Où : 
+- on exécute d'abord curl avec les options `-s` et `-I` comme vu précédemment pour récupérer ls headers seuls.
+- l'option `-i` de grep le rend insensible à la casse -> on sélectionne la ligne qui parle d'encodage (avec 'content-type").
+- puis on utilise grep à nouveaux pour faire une regex avec les options `-o` et `-P` cumulées : 
+	- `-o` permet de n'afficher **que la partie de la ligne qui correspond au motif** (et non toute la ligne comme le fait normalement grep).
+	- `-P` active les expressions régulières compatibles avec Perl.
+	- On affiche qu'on cherche le motif `'charset=\K[^; ]+'`:
+		- motif commençant par `charset=`, suivi de plusieurs (`+`) caractères qui ne sont ni (indiqué par `^`) un point virgule ni un espace (càd, le mot qui suit)~~, ni un antislash (qui indique probablement un retour en début de ligne - cf problème d'après qu'on voudra éviter aussi pour le petit 3)~~.
+		- **`\K` permet d'indiquer qu'on ne retient que la suite qui a matché**. On ne garde pas ce qui était avant ("reset match").
+
+Bon, par contre j'ai toujours mon souci de tabulations qui se font manger...
+
+J'ai ça : 
+```
+1	UTF-8://fr.wikipedia.org/wiki/Robot	HTTP/2 200 
+2	UTF-8://fr.wikipedia.org/wiki/Robot_de_cuisine	HTTP/2 200 
+3	fr.wikipedia.org/wiki/Robot_d%27indexation	HTTP/1.1 301 Moved Permanently
+4	UTF-8://fr.wikipedia.org/wiki/Bot_informatique	HTTP/2 200 
+5	UTF-8://fr.wikipedia.org/wiki/Atlas_(robot)	HTTP/2 200 
+6	https://roboty.magistry.fr		
+7	UTF-8://fr.wikipedia.org/wiki/Robot_(Leonard_de_Vinci)	HTTP/2 404 
+8	UTF-8://fr.wiktionary.org/wiki/robot	HTTP/2 200 
+9	https://fr.wikipedia.org/wiki/Protocole_d%27exclusion_des_robots	HTTP/2 20UTF-8
+10	UTF-8://fr.wikipedia.org/wiki/Robotique	HTTP/2 200 
+```
+
+Une hypothèse est que quand je récupère la ligne avec le code de statut, ça me récupère aussi le retour au début de ligne (colonne 1), et l `\t` suivant ramène donc à la colonne 2. 
+J'ai cherché une option pour ne récupérer que le code XXX. `awk` semble permettre de découper un texte qu'on lui donne selon les séparateurs classiques (points-virgule, espaces...) et les considère comme des variables utilisables localement.
+En runnant ça : 
+```bash
+CODE_HTTP=$(echo "${METADONNEES}" | head -n 1 | awk '{print $2}') # lit la 1ère 
+```
+Normalement on ne garde qu le deuxième "mot" de la ligne "HTTP/2 200". J'ai aussi espoir que ça enlève le retour au début de ligne potentiel.
+
+🥁🥁🥁 (roulement de tambours)
+
+Oui comme ça ça marche !! J'obtiens ça : 
+```
+1	https://fr.wikipedia.org/wiki/Robot	200	UTF-8
+2	https://fr.wikipedia.org/wiki/Robot_de_cuisine	200	UTF-8
+3	fr.wikipedia.org/wiki/Robot_d%27indexation	301	
+4	https://fr.wikipedia.org/wiki/Bot_informatique	200	UTF-8
+5	https://fr.wikipedia.org/wiki/Atlas_(robot)	200	UTF-8
+6	https://roboty.magistry.fr		
+7	https://fr.wikipedia.org/wiki/Robot_(Leonard_de_Vinci)	404	UTF-8
+8	https://fr.wiktionary.org/wiki/robot	200	UTF-8
+9	https://fr.wikipedia.org/wiki/Protocole_d%27exclusion_des_robots	200	UTF-8
+10	https://fr.wikipedia.org/wiki/Robotique	200	UTF-8
+```
+
+`awk` outil pratique à retenir, super pour découper. Il me semble par contre que a run dans un autre shell (comme `gawk`, mais j'en sais trop rien je ne connais que de loin)... peut-être pas le plus efficace. De plus je suppose qu'on devait pouvoir le faire uniquement avec les commandes qu'on a vues jusqu'ici ?
+
+Peut-être faisable aussi avec regex... je peux essayer par exemple de faire un peu comme tout à l'heure avec 'charset' en disant que je prends le motif qui suit un espace (dans la première ligne isolée) et que je m'arrête quand j'ai un caractère spécial, style `\`. Voire même, je peux juste dire que je veux trois caractères je crois ??
+
+```bash
+CODE_HTTP=$(echo "${METADONNEES}" | head -n 1 | grep -oP " \K\d{3}")
+```
+Il me semble que comme ça ça permet de repérer un motif du style espace suivi de 3 chiffres, en enlevant l'espace (grâce au `\K`).
+
+Par contre, un peu dommage en fait (mais c'était le cas aussi au-dessus) que je perde les éventuels messages qui suivent le code statut.
+
+Je teste... → Ça marche aussi ! 🥳
+
+J'aurai vraiement galéré. 
+
+Et maintenant : 
+
+3. **Nombre de mots dans la page**
+
+Là franchement je pense juste faire un `lynx -dump -nolist` (comme on a vu en cours pour n'avoir que le contenu de la page sans liens) avec un pipe dans `wc` pour compter les mots (`-w`).
+
+Et j'ai rajouté une petite ligne d'en-têtes au tout début : 
+```bash
+echo -e "N\tURL\tStatut HTTP\tEncodage\tNb mots"
+```
+
+
+**Nouveaux soucis :** 
+1. on a de nouveau le problème de retour au début que j'avais avec la ligne de code de statut, qui se pase à la fin de la ligne avec le charset...:
+```
+N	URL	Statut HTTP	Encodage	Nb mots
+1	5681s://fr.wikipedia.org/wiki/Robot	200	UTF-8
+2	1161s://fr.wikipedia.org/wiki/Robot_de_cuisine	200	UTF-8
+3	fr.wikipedia.org/wiki/Robot_d%27indexation	301		1765
+4	2583s://fr.wikipedia.org/wiki/Bot_informatique	200	UTF-8
+5	1167s://fr.wikipedia.org/wiki/Atlas_(robot)	200	UTF-8
+
+Looking up roboty.magistry.fr
+Making HTTPS connection to roboty.magistry.fr
+
+lynx: Can't access startfile https://roboty.magistry.fr/
+6	https://roboty.magistry.fr			0
+7	440ps://fr.wikipedia.org/wiki/Robot_(Leonard_de_Vinci)	404	UTF-8
+8	4807s://fr.wiktionary.org/wiki/robot	200	UTF-8
+9	https://fr.wikipedia.org/wiki/Protocole_d%27exclusion_des_robots	200	10588
+10	13023://fr.wikipedia.org/wiki/Robotique	200	UTF-8
+```
+Le seul endroit où le problème ne survient pas est lorqu'on n'a pas de charset donné.
+
+Une solution : mon problème semble être un "carriage return" qu'on peut enlever avec `tr -d '\r'` (cf https://stackoverflow.com/questions/800030/remove-carriage-return-in-unix).
+
+Je l'insère dans mon code. Maintenant j'exécute curl comme suit :
+```bash
+METADONNEES=$(curl -s -I ${line} | tr -d '\r')
+```
+
+Ça marche ! 
+
+Par contre ça a résolu seulement mon problème 1, et pas mon problème 2 :
+2. mauvaise gestion au niveau de https://roboty.magistry.fr, erreur non prise en charge pour le moment...
+
+Résultat actuel : 
+```
+N	URL	Statut HTTP	Encodage	Nb mots
+1	https://fr.wikipedia.org/wiki/Robot	200	UTF-8	5681
+2	https://fr.wikipedia.org/wiki/Robot_de_cuisine	200	UTF-8	1161
+3	fr.wikipedia.org/wiki/Robot_d%27indexation	301		1765
+4	https://fr.wikipedia.org/wiki/Bot_informatique	200	UTF-8	2583
+5	https://fr.wikipedia.org/wiki/Atlas_(robot)	200	UTF-8	1167
+
+Looking up roboty.magistry.fr
+Making HTTPS connection to roboty.magistry.fr
+
+lynx: Can't access startfile https://roboty.magistry.fr/
+6	https://roboty.magistry.fr			0
+7	https://fr.wikipedia.org/wiki/Robot_(Leonard_de_Vinci)	404	UTF-8	440
+8	https://fr.wiktionary.org/wiki/robot	200	UTF-8	4807
+9	https://fr.wikipedia.org/wiki/Protocole_d%27exclusion_des_robots	200	UTF-8	1058
+10	https://fr.wikipedia.org/wiki/Robotique	200	UTF-8	13023
+```
+
+Pour le code suivant : 
+
+```bash
+#!/bin/bash
+
+# Vérification qu'on a donné un argument
+if [ $# -ne 1 ] # teste si nb d'argument différent de 1
+then
+	echo "Donner un paramètre (chemin vers fichier d'URLs)"
+	exit # fin de programme
+fi
+
+N=0 	# compteur d'URLs
+URLS=$1
+
+echo -e "N\tURL\tStatut HTTP\tEncodage\tNb mots"
+
+while read -r line;
+do
+	N=$(expr $N + 1) # incrément
+
+	# Nouvelles lignes pour exo 2
+
+	# On va récupérer les métadonnées en exécutant curl (line est une URL)
+	METADONNEES=$(curl -s -I ${line} | tr -d '\r')
+
+	# code de statut
+# 	CODE_HTTP=$(echo "${METADONNEES}" | head -n 1 | awk '{print $2}') # lit la 1ère ligne
+	CODE_HTTP=$(echo "${METADONNEES}" | head -n 1 | grep -oP " \K\d{3}")
+
+	# encodage : on fait une regex
+	ENCODING=$(echo "${METADONNEES}" | grep -i "content-type" | grep -oP "charset=\K[^; ]+")
+
+	NB_MOTS=$(lynx -dump -nolist ${line} | wc -w)
+
+	# on affiche les données extraites espacées par des tabulations
+	echo -e "${N}\t${line}\t${CODE_HTTP}\t${ENCODING}\t${NB_MOTS}"
+
+done < ${URLS};
+```
+
+
+Pour le moment, je ne vais pas réussir à faire mieux. J'ai déjà un jour de retard (j'étais en train de déménager...) alors je poste ça et je verrai bien la correction. :)
