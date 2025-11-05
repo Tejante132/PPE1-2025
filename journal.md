@@ -1450,3 +1450,37 @@ done < ${URLS};
 
 
 Pour le moment, je ne vais pas réussir à faire mieux. J'ai déjà un jour de retard (j'étais en train de déménager...) alors je poste ça et je verrai bien la correction. :)
+
+
+---
+
+## Wed 05.11.2025 
+
+Cours [[HTML]], [[Balisage]], puis réécriture du [[mini-projet PPE]] sous forme de [[tableau HTML]].
+
+### Consignes miniprojet-2
+**Deadline** : lundi 10.11.2025 à 23h59.
+
+**Exercice :** Transformer la sortie tabulaire du [[mini-projet PPE]] en [[tableau HTML]].
+On va transformer la sortie tabulaire en sortie au format HTML. Il faut donc crér un fichier .html qui contiendra : 
+1. un entête (`head`)
+2. un corps (`body`)
+	- Devra contenir au moins le tableau des données récupérées, avec une ligne d'en-tête et les résultats pour chaque URL
+
+Ce code HTML doit être écrit dans un fichier `.html` qui doit être lisible par un navigateur web quelconque.
+Le tableau doit se situer au chemin : `PPE1-2025/miniprojet/tableaux/tableau-fr.html`.
+
+**Petites étapes :** 
+- [ ] corriger le code au besoin (comme moi il marchait bien je pense simplement créer un tag sur le même commit) 
+	- [ ] transformer la sortie en sortir TSV plutôt que juste des données affichées sur l'écran ? (à mettre dans `tableaux/`)
+	- [ ] tag **miniprojet-1-revu** ([[git tag]])
+- [ ] faire exos du miniprojet sur son dépôt individuel : 
+	- [ ] transformer la sortie TSV en HTML
+		- [ ] créer entête
+		- [ ] créer corps 
+			- [ ] entête de table
+			- [ ] création d'une ligne pour chaque URL
+	- [ ] supprimer le TSV de mon dépôt
+	- [ ] *bonus* : faire feuille d'exos sur comptage de mots / bigrammes
+- [ ] créer le tag **miniprojet-2** à la fin du travail et le push sur Github
+- [ ] créer un fichier texte avec le lien github vers le tag **miniprojet-2**
