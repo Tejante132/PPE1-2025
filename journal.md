@@ -28,7 +28,7 @@ Pour le cours de [[Projet de programmation encadré]].
 - markdown ? rédigé sous Obsidian? --> vu que je prends déjà mes notes sous markdown dans Obsidian...
 - [x] voir si c'est possible de partager juste une note de mon repo obsidian (la note active)  [completion:: 2025-10-06]
 	- je vais plutôt créer un nouveau répo git dans lequel je mets uniquement les notes de PPE (cours et exos) en guise de journal de bord
-- [ ] ~~sinon juste je copie colle la note (déjà en markdown) si on est censé envoyer ~~
+- ~~sinon juste je copie colle la note (déjà en markdown) si on est censé envoyer ~~
 
 
 ## Wed 24.09.2025 - cours d'intro
@@ -95,7 +95,10 @@ Donc, après avoir créé le sous-dossier  `Tokyo/`, j'ai lancé :
 ```sh
 mv *Tokyo* Tokyo/
 ```
-- [ ] Bon, petit souci annoncé qui est donc qu'en théorie j'essaie aussi de déplacer l dossier `Tokyo/` dans lui-même (action qui échoue heureusement). Ce serait peut-être bien que je trouve une *option sur mv* pour mettre une exception (p.ex : pas les dossiers, ou pas un certain fichier).
+- Bon, petit souci annoncé qui est donc qu'en théorie j'essaie aussi de déplacer l dossier `Tokyo/` dans lui-même (action qui échoue heureusement). Ce serait peut-être bien que je trouve une *option sur mv* pour mettre une exception (p.ex : pas les dossiers, ou pas un certain fichier). ✅ 2025-11-06
+	- ça semble se faire de façon plus complexe que ce que je voudrais (même si ce n'est pas super dur non-plus, j'aurais aimé une simple option sur la commande `mv`) -> quelques sources : [ici](https://unix.stackexchange.com/questions/147290/move-every-file-that-is-not-a-directory#:~:text=There%20is%20one%20way%20to%20match%20by%20type%3A,mv%20--%20%2A%2F%20%22%24tmp%22%20mv%20--%20%2A%20other_directory%2F), 
+	- `find . -type f -exec mv {} /destination_folder/ \;`
+	- pour mon cas d'usage, je pense que ça suffit largement de laisser le terminal repérer qu'il ne peut pas déplacer un dossier dans lui-même.
 
 Après globalement j'ai finalement décidé de faire un petit script qui permet de re-ranger les fichiers dans les dossiers adaptés, avec des [[boucles en bash]].
 
@@ -317,7 +320,8 @@ Mes points de doute :
 - [x] pas 100% sûre là comme ça de comment on utilise `<` (par contre les `>` sont bien clairs)  [completion:: 2025-10-08]
 	-> *exemple :* `wc < fic.txt` : on redirige le contenu du fichier `fic.txt` dans le stdin.
 - [ ] pour la [[redirection vers et depuis des fichiers]] : vérifier si la redirection de la sortie d'erreur se fait avec `&<`, `<&` ou les deux ?
-- [ ] `wc` : le nom laisse entendre que ça compte les mots, mais je crois qu'en réalité ça compte plutôt les lignes. Tester avec et sens option `-l`.
+- [x] `wc` : le nom laisse entendre que ça compte les mots, mais je crois qu'en réalité ça compte plutôt les lignes. Tester avec et sens option `-l`. ✅ 2025-11-06
+	- [[wc]] peut compter des mots ou des lignes selon l'option qu'on lui donne (respectivement `-w` et `-l`)
 
 On va fair des manipulation sur les [[fichiers .ann]] utilisés à la séance précédente.
 -> Avant ça je suis allée finir le tri parce que je ne l'avais pas fait, comme je savais déjà faire (déjà fait un peu de bash dans mes études d'ingé) et que je ne savais pas qu'on en aurait besoin.....
@@ -417,9 +421,9 @@ Booon en fait je viens encore de voir qu'il vallait mieux suivre les exos de la 
 > Je verrai si j'ai la foi de refaire exactement le TD pendant les vacances, pour le moment je me concentre sur suivre en direct ce qu'on fait maintenant pour pas prendre de retard.
 
 ### Ex 2 scripts -exos (cours unix.pdf) 
-- [ ] créer un script pour établir le classement des lieux les plus cités. 
-- [ ] prendre en argument l’année, le mois et le nombre de lieux à afficher 
-- [ ] accepter * pour l’année et le mois.
+- [x] créer un script pour établir le classement des lieux les plus cités. ✅ 2025-11-06
+- [x] prendre en argument l’année, le mois et le nombre de lieux à afficher ✅ 2025-11-06
+- [x] accepter * pour l’année et le mois. ✅ 2025-11-06
 
 Outils à utiliser : 
 - tail ou `head` (sélectionner un certain nombre de lieux)
@@ -1471,16 +1475,17 @@ Ce code HTML doit être écrit dans un fichier `.html` qui doit être lisible pa
 Le tableau doit se situer au chemin : `PPE1-2025/miniprojet/tableaux/tableau-fr.html`.
 
 **Petites étapes :** 
-- [ ] corriger le code au besoin (comme moi il marchait bien je pense simplement créer un tag sur le même commit) 
-	- [ ] transformer la sortie en sortir TSV plutôt que juste des données affichées sur l'écran ? (à mettre dans `tableaux/`)
-	- [ ] tag **miniprojet-1-revu** ([[git tag]])
-- [ ] faire exos du miniprojet sur son dépôt individuel : 
-	- [ ] transformer la sortie TSV en HTML
-		- [ ] créer entête
-		- [ ] créer corps 
-			- [ ] entête de table
-			- [ ] création d'une ligne pour chaque URL
-	- [ ] supprimer le TSV de mon dépôt
-	- [ ] *bonus* : faire feuille d'exos sur comptage de mots / bigrammes
-- [ ] créer le tag **miniprojet-2** à la fin du travail et le push sur Github
-- [ ] créer un fichier texte avec le lien github vers le tag **miniprojet-2**
+- [ ] **miniprojet-2** ⏫ 📅 2025-11-10
+	- [ ] corriger le code au besoin (comme moi il marchait bien je pense simplement créer un tag sur le même commit) 
+		- [ ] transformer la sortie en sortir TSV plutôt que juste des données affichées sur l'écran ? (à mettre dans `tableaux/`)
+		- [ ] tag **miniprojet-1-revu** ([[git tag]])
+	- [ ] faire exos du miniprojet sur son dépôt individuel : 
+		- [ ] transformer la sortie TSV en HTML
+			- [ ] créer entête
+			- [ ] créer corps 
+				- [ ] entête de table
+				- [ ] création d'une ligne pour chaque URL
+		- [ ] supprimer le TSV de mon dépôt
+		- [ ] *bonus* : faire feuille d'exos sur comptage de mots / bigrammes
+	- [ ] créer le tag **miniprojet-2** à la fin du travail et le push sur Github
+	- [ ] créer un fichier texte avec le lien github vers le tag **miniprojet-2**
