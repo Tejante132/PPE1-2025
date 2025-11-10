@@ -10,7 +10,11 @@ fi
 N=0 	# compteur d'URLs
 URLS=$1
 
-echo -e "N\tURL\tStatut HTTP\tEncodage\tNb mots"
+# on crée un fichier de sortie dans lequel on stockera les informations
+fichier=tableaux/tableau-fr.tsv
+touch ${fichier}
+
+echo -e "N\tURL\tStatut HTTP\tEncodage\tNb mots" > ${fichier}
 
 while read -r line;
 do
@@ -31,6 +35,6 @@ do
 	NB_MOTS=$(lynx -dump -nolist ${line} | wc -w)
 
 	# on affiche les données extraites espacées par des tabulations
-	echo -e "${N}\t${line}\t${CODE_HTTP}\t${ENCODING}\t${NB_MOTS}"
+	echo -e "${N}\t${line}\t${CODE_HTTP}\t${ENCODING}\t${NB_MOTS}"  >> ${fichier}
 
 done < ${URLS};
