@@ -1475,7 +1475,7 @@ Ce code HTML doit être écrit dans un fichier `.html` qui doit être lisible pa
 Le tableau doit se situer au chemin : `PPE1-2025/miniprojet/tableaux/tableau-fr.html`.
 
 **Petites étapes :** 
-- [ ] **miniprojet-2** ⏫ 📅 2025-11-10
+- [ ] **miniprojet-2** ⏫ 📅 2025-11-11
 	- [ ] corriger le code au besoin (comme moi il marchait bien je pense simplement créer un tag sur le même commit) 
 		- [ ] transformer la sortie en sortir TSV plutôt que juste des données affichées sur l'écran ? (à mettre dans `tableaux/`)
 		- [ ] tag **miniprojet-1-revu** ([[git tag]])
