@@ -1475,17 +1475,72 @@ Ce code HTML doit être écrit dans un fichier `.html` qui doit être lisible pa
 Le tableau doit se situer au chemin : `PPE1-2025/miniprojet/tableaux/tableau-fr.html`.
 
 **Petites étapes :** 
-- [ ] **miniprojet-2** ⏫ 📅 2025-11-11
-	- [ ] corriger le code au besoin (comme moi il marchait bien je pense simplement créer un tag sur le même commit) 
-		- [ ] transformer la sortie en sortir TSV plutôt que juste des données affichées sur l'écran ? (à mettre dans `tableaux/`)
-		- [ ] tag **miniprojet-1-revu** ([[git tag]])
-	- [ ] faire exos du miniprojet sur son dépôt individuel : 
-		- [ ] transformer la sortie TSV en HTML
-			- [ ] créer entête
-			- [ ] créer corps 
-				- [ ] entête de table
-				- [ ] création d'une ligne pour chaque URL
-		- [ ] supprimer le TSV de mon dépôt
-		- [ ] *bonus* : faire feuille d'exos sur comptage de mots / bigrammes
-	- [ ] créer le tag **miniprojet-2** à la fin du travail et le push sur Github
-	- [ ] créer un fichier texte avec le lien github vers le tag **miniprojet-2**
+- [x] **miniprojet-2** ⏫ 📅 2025-11-11 ✅ 2025-11-10
+	- [x] corriger le code au besoin ~~(comme moi il marchait bien je pense simplement créer un tag sur le même commit) ~~ ✅ 2025-11-10
+		- [x] transformer la sortie en sortir TSV plutôt que juste des données affichées sur l'écran ? (à mettre dans `tableaux/`) ✅ 2025-11-10
+		- [x] tag **miniprojet-1-revu** ([[git tag]]) ✅ 2025-11-10
+	- [x] faire exos du miniprojet sur son dépôt individuel : ✅ 2025-11-10
+		- [x] transformer la sortie TSV en [[HTML]] ✅ 2025-11-10
+			- [x] créer entête ✅ 2025-11-10
+			- [x] créer corps ✅ 2025-11-10
+				- [x] entête de table ✅ 2025-11-10
+				- [x] création d'une ligne pour chaque URL ✅ 2025-11-10
+		- [x] supprimer le TSV de mon dépôt ✅ 2025-11-10
+		- *bonus* : faire feuille d'exos sur comptage de mots / bigrammes → y'a pas la feuille d'exos
+	- [x] créer le tag **miniprojet-2** à la fin du travail et le push sur Github ✅ 2025-11-10
+	- ~~créer un fichier texte avec le lien github vers le tag **miniprojet-2**~~
+
+Mon 10.11.2025
+De retour pour vous jouer un mauvais tour ! je viens modifier mon code de la dernière fois, parce que j'avais affiché à l'écran le tableau d'informations, mais apparemment il fallait le faire dans un fichier TSV.
+
+Je vais tenter de juste rajouter un `touch tableau-fr.tsv` au début du programme puis de remplacer les commandes de type `echo ...` en `echo ... >> tableau-fr.tsv` pour rajouter les lignes en fin de fichier.
+- [x] à voir s'il faudra rajouter des sauts de ligne ou s'ils sont automatiques d'un ajout à l'autre. ✅ 2025-11-10
+	- ça a marché nickel sans avoir besoin de changer quoi que ce soit d'autre ! (enfin j'avais juste oublié de mettre le fichier créé dans le répertoire tableaux mais sinon nickel)
+	- en plus pratique, a permet de séparer les informations de sortie standard d'erreur (affichées dans le terminal) de celles que je veux stocker dans le tsv.
+	- finalement j'ai créé une tariable avec le nom de fichier pour ne pas avoir à redonner le chemin à chaque fois
+
+Par contre ! j'ai voulu tester et effectivement j'ai un léger souci sur le fait que comme j'écris à la fin du fichier donné (`>>`), si j'exécute plusieurs fois le programme, je rajoute juste des lignes au lieu de réécrire le fichier.
+*Exemple :* 
+
+| N   | URL                                                              | Statut HTTP | Encodage | Nb mots |
+| --- | ---------------------------------------------------------------- | ----------- | -------- | ------- |
+| 1   | https://fr.wikipedia.org/wiki/Robot                              | 200         | UTF-8    | 5681    |
+| 2   | https://fr.wikipedia.org/wiki/Robot_de_cuisine                   | 200         | UTF-8    | 1161    |
+| 3   | fr.wikipedia.org/wiki/Robot_d%27indexation                       | 301         |          | 1765    |
+| 4   | https://fr.wikipedia.org/wiki/Bot_informatique                   | 200         | UTF-8    | 2583    |
+| 5   | https://fr.wikipedia.org/wiki/Atlas_(robot)                      | 200         | UTF-8    | 1167    |
+| 6   | https://roboty.magistry.fr                                       |             |          | 0       |
+| 7   | https://fr.wikipedia.org/wiki/Robot_(Leonard_de_Vinci)           | 404         | UTF-8    | 440     |
+| 8   | https://fr.wiktionary.org/wiki/robot                             | 200         | UTF-8    | 4813    |
+| 9   | https://fr.wikipedia.org/wiki/Protocole_d%27exclusion_des_robots | 200         | UTF-8    | 1139    |
+| 10  | https://fr.wikipedia.org/wiki/Robotique                          | 200         | UTF-8    | 13025   |
+| N   | URL                                                              | Statut HTTP | Encodage | Nb mots |
+| 1   | https://fr.wikipedia.org/wiki/Robot                              | 200         | UTF-8    | 5681    |
+| 2   | https://fr.wikipedia.org/wiki/Robot_de_cuisine                   | 200         | UTF-8    | 1161    |
+| 3   | fr.wikipedia.org/wiki/Robot_d%27indexation                       | 301         |          | 1765    |
+| 4   | https://fr.wikipedia.org/wiki/Bot_informatique                   | 200         | UTF-8    | 2583    |
+| 5   | https://fr.wikipedia.org/wiki/Atlas_(robot)                      | 200         | UTF-8    | 1167    |
+| 6   | https://roboty.magistry.fr                                       |             |          | 0       |
+| 7   | https://fr.wikipedia.org/wiki/Robot_(Leonard_de_Vinci)           | 404         | UTF-8    | 440     |
+| 8   | https://fr.wiktionary.org/wiki/robot                             | 200         | UTF-8    | 4813    |
+| 9   | https://fr.wikipedia.org/wiki/Protocole_d%27exclusion_des_robots | 200         | UTF-8    | 1139    |
+| 10  | https://fr.wikipedia.org/wiki/Robotique                          | 200         | UTF-8    | 13025   |
+Une solution simple possible : lorsque j'écris la première ligne, faire `echo .... > ${fichier}` au lieu de `>>` pour écraser le fichier existant.
+→ Ça marche bien !
+
+Ensuite pour le miniprojet 2 j'ai juste converti le tableau que je dressais en tsv en tableau html sur ce modèle : 
+```html
+<html>
+<table>
+ <tr><th>livre</th><th>taille</th></tr>
+ <tr>
+	<td>Du côté de chez Swan</td><td>1.0Mo</td> 
+ </tr>
+ <tr>
+	<td>L'assommoir</td><td>990 ko</td> 
+ </tr>
+</table>
+</html>
+```
+En mettant en en-tête (balises `<th>`) les étiquettes des infos récupérées.
+
