@@ -1544,3 +1544,91 @@ Ensuite pour le miniprojet 2 j'ai juste converti le tableau que je dressais en t
 ```
 En mettant en en-tête (balises `<th>`) les étiquettes des infos récupérées.
 
+---
+## Wed 12.11.2025
+### Correction miniprojet 3
+
+Petit tip : on peut utiliser **F12** (ou inspecter) sur une phrase pour observer en vis-à-vis le l'interprétation du navigateur et le rendu final.
+
+Moi j'avais tout mis sur une ligne quand j'utilisais echo (les balises les unes dans les autres sur une ligne), mais apparemment **on peut aussi mettre des retours à la ligne dans la commande `echo`** : 
+
+```bash
+	echo -e "
+		<tr>
+			<td>${N}</td>
+			<td>${line}</td>
+			<td>${CODE_HTTP}</td>
+			<td>${ENCODING}</td><td>${NB_MOTS}</td>
+		</tr>" >> ${fichier}
+```
+
+- [x] tester le code remis en forme ✅ 2025-11-12
+- [ ] est-ce que les retours à la ligne marchent dans une commande `echo` classique ou bien est-ce que l'option`-e` est nécessaire ?
+
+J'ai essayé d'ajouter une gestion des informations non-trouvées (pas de code http → 000; pas d'encodage → N/A) 
+- [x] faire marcher ✅ 2025-11-12
+	- Le problème était que j'avais créé et utilisé la variable `ENCODING` mais modifié la variable `encoding`. Attention à la casse !!
+
+Au final ça marche bien ! (code 000 et N/A pour l'encodage).
+<figure>
+	<img src="PJ/résultat_tableau_html.png" />
+	<figcaption>Tableau final</figcaption>
+ </figure>
+
+Autre question : 
+- [x] pourquoi écrire `exit 1` plutôt que `exit` ? ✅ 2025-11-12
+```bash
+# Vérification qu'on a donné un argument
+if [ $# -ne 1 ] # teste si nb d'argument différent de 1
+then
+	echo "Donner un paramètre (chemin vers fichier d'URLs)"
+	exit 1 # fin de programme
+fi
+```
+*Convention générale :* selon ce que renvoit le programme, on peut deviner comment s'est déroulée l'opération.
+
+| Code renvoyé par le programme                                | Information donnée    |
+| ------------------------------------------------------------ | --------------------- |
+| 0                                                            | tout s'est bien passé |
+| Tout autre nombre que 0<br>(convention spécifique au script) | il y a eu une erreur  |
+
+// Un peut comme les codes HTTP (200 = bon, supérieur à 200 : erreur qqpart)
+
+Une petite curiosité... quand j'avais testé mon code cette semaine, lancer le programme créait un tableau où UTF-8 n'était pas toujours marqué de la même façon (parfois en minuscules, parfois en majuscules). Pourtant, là, tout est en majuscules... bizarre.
+
+### Git Pages
+cf [[git-pages.pdf]].
+
+On teste sur le [git-along](https://github.com/Tejante132/git-along) en mettant simplement la page index.html sur le menu racine notre dépôt. C'est un petit programme un peu bidon juste pour l'exemple.
+
+Pour transformer en pages, on va sur la page de dépôt qui nous intéresse, puis sur les paramètres **de cette page**. Puis dans "Pages".
+
+Choix à faire : 
+
+| Etape  | Choix                |
+| ------ | -------------------- |
+| Source | Deploy from a branch |
+| Branch | main / root          |
+
+Youhou ! ma première page GitHub : https://tejante132.github.io/git-along/ !!!
+On peut aussi vérifier dans l'onglet "Action" ce qui est en train d'être fait pour notre git. On voit au début un logo orange qui indique que c'est en train de "charger" ? → puis ça passe au voyant vert !
+
+Pour trouver le nom de sa page web à partir du nom du dépôt :
+	le dépôt  → https://github.com/Tejante132/git-along
+	la page   → https://tejante132.github.io/git-along/
+
+Point sympa : le site est mis à jour à chaque push ! :D
+
+### Finaliser le miniprojet (avec pages)
+
+- [ ] Devoirs finition du miniprojet 📅 2025-11-16
+	- [ ] Créer une page d'accueil index.html qui utilise le *style Bulma* avec : 
+		- [x] une présentation rapide du mini-projet ✅ 2025-11-12
+		- [x] lien vers la page HTML qui contient le tableau de résultat (genre "cliquer ici pour accéder au tableau" avec un `<a href="lien_vers_tableau">` I guess) ✅ 2025-11-12
+	- [ ] *Déployer* (= push) une première fois la page pour vérifier que ça fonctionne
+	- [ ] rajouter un peu de style CSS pour avoir une jolie page
+	- [ ] mettre à jour le script de façon à générer directement la page avec le [[style Bulma]] qu'on lui a créé.
+	- [ ] Créer tag `miniprojet-3`.
+Déployer (push) à chaque étape pour voir la page mise à jour, jusqu'à avoir un résultat fonctionnel.
+
+cf [[style Bulma]].
