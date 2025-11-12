@@ -24,7 +24,7 @@ echo -e "
 echo -e "
 <body>
 	<table>
-		<tr><th>N</th><th>URL</th><th>Statut HTTP</th><th>Encodage</th><th>Nb mots</th></tr>" > ${fichier}
+		<tr><th>N</th><th>URL</th><th>Statut HTTP</th><th>Encodage</th><th>Nb mots</th></tr>" >> ${fichier}
 
 while read -r line;
 do
