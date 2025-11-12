@@ -1631,4 +1631,4 @@ Point sympa : le site est mis à jour à chaque push ! :D
 	- [ ] Créer tag `miniprojet-3`.
 Déployer (push) à chaque étape pour voir la page mise à jour, jusqu'à avoir un résultat fonctionnel.
 
-cf [[style Bulma]].
+cf [[style Bulma]], [[html-css.pdf]]
