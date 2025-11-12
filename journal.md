@@ -1625,8 +1625,8 @@ Point sympa : le site est mis à jour à chaque push ! :D
 	- [ ] Créer une page d'accueil index.html qui utilise le *style Bulma* avec : 
 		- [x] une présentation rapide du mini-projet ✅ 2025-11-12
 		- [x] lien vers la page HTML qui contient le tableau de résultat (genre "cliquer ici pour accéder au tableau" avec un `<a href="lien_vers_tableau">` I guess) ✅ 2025-11-12
-	- [ ] *Déployer* (= push) une première fois la page pour vérifier que ça fonctionne
-	- [ ] rajouter un peu de style CSS pour avoir une jolie page
+	- [x] *Déployer* (= push) une première fois la page pour vérifier que ça fonctionne ✅ 2025-11-12
+	- [ ] rajouter un peu de style [[CSS]] pour avoir une jolie page
 	- [ ] mettre à jour le script de façon à générer directement la page avec le [[style Bulma]] qu'on lui a créé.
 	- [ ] Créer tag `miniprojet-3`.
 Déployer (push) à chaque étape pour voir la page mise à jour, jusqu'à avoir un résultat fonctionnel.
