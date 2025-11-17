@@ -17,14 +17,35 @@ touch ${fichier}
 echo -e "
 <html>
 <head>
+	<link
+	rel='stylesheet'
+	href='https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/versions/bulma-no-dark-mode.min.css'>
 	<title>Tableau d'URLs</title>
-	<meta charset="UTF-8" />
-</head>" > ${fichier}
+	<meta charset='UTF-8' />
+</head>"> ${fichier}
 
 echo -e "
 <body>
-	<table>
-		<tr><th>N</th><th>URL</th><th>Statut HTTP</th><th>Encodage</th><th>Nb mots</th></tr>" >> ${fichier}
+	<section class="section has-background-black is-fullheight">
+		<!-- Encart titre et logo côte à côte -->
+		<br />
+		<div class="columns is-vcentered">
+			<div class="column">
+				<figure class="image">
+					<a href="https://plurital.org"><img src="../../PJ/plurital-logo.jpg" /></a>
+				</figure>
+			</div>
+			<div class="column"><h1 class="title is-1 is-1-desktop is-2-tablet is-6-mobile has-text-centered has-text-white">Miniprojet de PPE</h1></div>
+		</div>
+		<br />
+
+		<div class="container has-background-white">
+			<section class="section column">
+				<h3 class="title is-3 has-text-centered has-background-link-light">Informations sur les sites webs</h3>
+			</section>
+
+			<table class="table is-hoverable is-fullwidth">
+				<thead><tr><th>N</th><th>URL</th><th>Statut HTTP</th><th>Encodage</th><th>Nb mots</th></tr></thead>" >> ${fichier}
 
 while read -r line;
 do
@@ -56,17 +77,20 @@ do
 
 	# on affiche les données extraites espacées par des tabulations
 	echo -e "
-		<tr>
-			<td>${N}</td>
-			<td>${line}</td>
-			<td>${CODE_HTTP}</td>
-			<td>${ENCODING}</td>
-			<td>${NB_MOTS}</td>
-		</tr>" >> ${fichier}
+				<tr>
+					<td>${N}</td>
+					<td><a href='${line}'>${line}</a></td>
+					<td>${CODE_HTTP}</td>
+					<td>${ENCODING}</td>
+					<td>${NB_MOTS}</td>
+				</tr>" >> ${fichier}
 
 done < ${URLS};
 
 echo -e "
-	</table>
+			</table>
+		<br />
+		</div>
+	</section>
 </body>
 </html>" >> ${fichier}

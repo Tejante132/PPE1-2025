@@ -1,94 +1,118 @@
 
 <html>
 <head>
+	<link
+	rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/versions/bulma-no-dark-mode.min.css">
 	<title>Tableau d'URLs</title>
 	<meta charset=UTF-8 />
 </head>
 
 <body>
-	<table>
-		<tr><th>N</th><th>URL</th><th>Statut HTTP</th><th>Encodage</th><th>Nb mots</th></tr>
+	<section class="section has-background-black is-fullheight">
+		<!-- Encart titre et logo côte à côte -->
+		<br />
+		<div class="columns is-vcentered">
+			<div class="column">
+				<figure class="image">
+					<a href="https://plurital.org"><img src="../../PJ/plurital-logo.jpg" /></a>
+				</figure>
+			</div>
+			<div class="column"><h1 class="title is-1 is-1-desktop is-2-tablet is-6-mobile has-text-centered has-text-white">Miniprojet de PPE</h1></div>
+		</div>
+		<br />
 
-		<tr>
-			<td>1</td>
-			<td>https://fr.wikipedia.org/wiki/Robot</td>
-			<td>200</td>
-			<td>UTF-8</td>
-			<td>5681</td>
-		</tr>
+		<div class="container has-background-white">
+			<section class="section column">
+				<h3 class="title is-3 has-text-centered has-background-link-light">Informations sur les sites webs</h3>
+			</section>
 
-		<tr>
-			<td>2</td>
-			<td>https://fr.wikipedia.org/wiki/Robot_de_cuisine</td>
-			<td>200</td>
-			<td>UTF-8</td>
-			<td>1161</td>
-		</tr>
+			<table class="table is-hoverable is-fullwidth">
+				<thead><tr><th>N</th><th>URL</th><th>Statut HTTP</th><th>Encodage</th><th>Nb mots</th></tr></thead>
 
-		<tr>
-			<td>3</td>
-			<td>fr.wikipedia.org/wiki/Robot_d%27indexation</td>
-			<td>301</td>
-			<td>N/A</td>
-			<td>1765</td>
-		</tr>
+				<tr>
+					<td>1</td>
+					<td>https://fr.wikipedia.org/wiki/Robot</td>
+					<td>200</td>
+					<td>UTF-8</td>
+					<td>5681</td>
+				</tr>
 
-		<tr>
-			<td>4</td>
-			<td>https://fr.wikipedia.org/wiki/Bot_informatique</td>
-			<td>200</td>
-			<td>UTF-8</td>
-			<td>2583</td>
-		</tr>
+				<tr>
+					<td>2</td>
+					<td>https://fr.wikipedia.org/wiki/Robot_de_cuisine</td>
+					<td>200</td>
+					<td>UTF-8</td>
+					<td>1161</td>
+				</tr>
 
-		<tr>
-			<td>5</td>
-			<td>https://fr.wikipedia.org/wiki/Atlas_(robot)</td>
-			<td>200</td>
-			<td>UTF-8</td>
-			<td>1167</td>
-		</tr>
+				<tr>
+					<td>3</td>
+					<td>fr.wikipedia.org/wiki/Robot_d%27indexation</td>
+					<td>301</td>
+					<td>N/A</td>
+					<td>1765</td>
+				</tr>
 
-		<tr>
-			<td>6</td>
-			<td>https://roboty.magistry.fr</td>
-			<td>000</td>
-			<td>N/A</td>
-			<td>0</td>
-		</tr>
+				<tr>
+					<td>4</td>
+					<td>https://fr.wikipedia.org/wiki/Bot_informatique</td>
+					<td>200</td>
+					<td>UTF-8</td>
+					<td>2583</td>
+				</tr>
 
-		<tr>
-			<td>7</td>
-			<td>https://fr.wikipedia.org/wiki/Robot_(Leonard_de_Vinci)</td>
-			<td>404</td>
-			<td>UTF-8</td>
-			<td>440</td>
-		</tr>
+				<tr>
+					<td>5</td>
+					<td>https://fr.wikipedia.org/wiki/Atlas_(robot)</td>
+					<td>200</td>
+					<td>UTF-8</td>
+					<td>1167</td>
+				</tr>
 
-		<tr>
-			<td>8</td>
-			<td>https://fr.wiktionary.org/wiki/robot</td>
-			<td>200</td>
-			<td>UTF-8</td>
-			<td>4813</td>
-		</tr>
+				<tr>
+					<td>6</td>
+					<th><a href="https://roboty.magistry.fr">https://roboty.magistry.fr</a></th>
+					<td class="is-warning">000</td>
+					<td class="is-warning">N/A</td>
+					<td class="is-warning">0</td>
+				</tr>
 
-		<tr>
-			<td>9</td>
-			<td>https://fr.wikipedia.org/wiki/Protocole_d%27exclusion_des_robots</td>
-			<td>200</td>
-			<td>UTF-8</td>
-			<td>1139</td>
-		</tr>
+				<tr>
+					<td>7</td>
+					<td>https://fr.wikipedia.org/wiki/Robot_(Leonard_de_Vinci)</td>
+					<td>404</td>
+					<td>UTF-8</td>
+					<td>440</td>
+				</tr>
 
-		<tr>
-			<td>10</td>
-			<td>https://fr.wikipedia.org/wiki/Robotique</td>
-			<td>200</td>
-			<td>UTF-8</td>
-			<td>13025</td>
-		</tr>
+				<tr>
+					<td>8</td>
+					<td>https://fr.wiktionary.org/wiki/robot</td>
+					<td>200</td>
+					<td>UTF-8</td>
+					<td>4813</td>
+				</tr>
 
-	</table>
+				<tr>
+					<td>9</td>
+					<td>https://fr.wikipedia.org/wiki/Protocole_d%27exclusion_des_robots</td>
+					<td>200</td>
+					<td>UTF-8</td>
+					<td>1139</td>
+				</tr>
+
+				<tr>
+					<td>10</td>
+					<td>https://fr.wikipedia.org/wiki/Robotique</td>
+					<td>200</td>
+					<td>UTF-8</td>
+					<td>13025</td>
+				</tr>
+
+			</table>
+		<br />
+		</div>
+	</section>
 </body>
 </html>
