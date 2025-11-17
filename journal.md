@@ -1621,18 +1621,18 @@ Point sympa : le site est mis à jour à chaque push ! :D
 
 ### Finaliser le miniprojet (avec pages)
 
-- [ ] Devoirs finition du miniprojet 3🔼 📅 2025-11-18
+- [x] Devoirs finition du miniprojet 3 🔼 📅 2025-11-18 ✅ 2025-11-17
 	- [x] Créer une page d'accueil index.html qui utilise le *style Bulma* avec : ✅ 2025-11-17
 		- [x] une présentation rapide du mini-projet ✅ 2025-11-12
 		- [x] lien vers la page HTML qui contient le tableau de résultat (genre "cliquer ici pour accéder au tableau" avec un `<a href="lien_vers_tableau">` I guess) ✅ 2025-11-12
 	- [x] *Déployer* (= push) une première fois la page pour vérifier que ça fonctionne ✅ 2025-11-12
-	- [ ] rajouter un peu de style [[CSS]] pour avoir une jolie page
+	- [x] rajouter un peu de style [[CSS]] pour avoir une jolie page ✅ 2025-11-17
 		- [x] j'ai fait quelques trucs marrant ✅ 2025-11-17
 			- ex : rajouté un lien vers plurital quand on clique sur le logo, fond, liens vers la liste d'URL et le tableau.
 		- [x] aussi mettre joli tableau ✅ 2025-11-17
-			- [ ] d'abord faire à la main une mise en page sympa du tableau depuis le fichier .html et noter les modifications effectuées 
-			- [ ] puis l'intégrer dans `miniprojet.sh`, i.e. mettre à jour le script de façon à générer directement la page avec le style Bulma qu'on lui a créé.
-	- [ ] Créer tag `miniprojet-3`.
+			- [x] d'abord faire à la main une mise en page sympa du tableau depuis le fichier .html et noter les modifications effectuées ✅ 2025-11-17
+			- [x] puis l'intégrer dans `miniprojet.sh`, i.e. mettre à jour le script de façon à générer directement la page avec le style Bulma qu'on lui a créé. ✅ 2025-11-17
+	- [x] Créer tag `miniprojet-3`. ✅ 2025-11-17
 Déployer (push) à chaque étape pour voir la page mise à jour, jusqu'à avoir un résultat fonctionnel.
 
 cf [[style Bulma]], [[html-css.pdf]]
@@ -1645,6 +1645,8 @@ pages ouvertes pour reprendre la prochaine fois :
 - https://github.com/Tejante132/PPE1-2025
 - https://github.com/Tejante132/PPE1-2025/tags
 
+Lien vers ma page : https://tejante132.github.io/PPE1-2025/
+
 *Remarque sur les liens*: 
 	Il semble que quand on utilise une balise `<a href="...">`, html (?) identifie tout seul si la source donnée semble être un fichier "local" (ou page reliée, par exemple lien vers un autre fichier .html) ou un site web à partir de la structure de la référence donnée.
 	→ Quand j'ai essayé de faire un lien vers "plurital.org", ça essayait de me trouver un fichier local éponyme, jusqu'à ce que je rajoute "https://" devant.
@@ -1652,19 +1654,19 @@ pages ouvertes pour reprendre la prochaine fois :
 Mon 17.11.2025
 **MVP**
 Modifications effectuées sur tableau-fr.html pour styliser (coché = rajouté dans `miniprojet.sh`) : 
-- [ ] ajouter dans la balise d'entête `<head>` le lien vers le style Bulma:
+- [x] ajouter dans la balise d'entête `<head>` le lien vers le style Bulma: ✅ 2025-11-17
 ```html
 	<link
 	rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/versions/bulma-no-dark-mode.min.css">
 ```
 
-- [ ] dans la balise ouvrante de la table, rajouter le style Bulma de table : 
+- [x] dans la balise ouvrante de la table, rajouter le style Bulma de table : ✅ 2025-11-17
 ```html
 <table class="table">
 ```
 
-- [ ] préciser en Bulma la ligne d'entête en ajoutant une balise `<thead>` qui entoure la ligne d'entête
+- [x] préciser en Bulma la ligne d'entête en ajoutant une balise `<thead>` qui entoure la ligne d'entête ✅ 2025-11-17
 ```html
 <thead>
 	<tr><th>N</th>.....<tr>
@@ -1677,7 +1679,7 @@ Modifications effectuées sur tableau-fr.html pour styliser (coché = rajouté d
 **Pour aller + loin (parce qu'on s'amuse bien en PPE)**
 *Sur tableau (miniprojet.sh)*
 Je regarde pour le *fun* si je peux ajouter quelques autres options sympas, par exemple essayer de faire en sorte que les pages aient le même style (index et tableau).
-- [ ] rajouter un style spécial aux cases dans le cas où on n'a pas trouvé une certaine info, ex
+- [x] rajouter un style spécial aux cases dans le cas où on n'a pas trouvé une certaine info, ex ✅ 2025-11-17
 ```html
 		<tr>
 			<td>https://roboty.magistry.fr</td>
@@ -1686,15 +1688,34 @@ Je regarde pour le *fun* si je peux ajouter quelques autres options sympas, par 
 			<td class="is-warning">0</td>
 		</tr>
 ```
-- [ ] rajouter à chaque fois le lien vers le site, ex : 
+Dans miniprojet.sh, pour que ça n'applique ce style qu'en cas de souci : 
+```bash
+STYLE_ENC="" && STYLE_HTTP="" && STYLE_NB="" #couleur de fond vide par défaut
+# ...
+if [ $NB_MOTS -eq 0 ]
+then
+	STYLE_NB="is-warning"
+# ...
+echo -e "
+	<tr>
+		<td>${N}</td>
+		<td><a href='${line}'>${line}</a></td>
+		<td class='${STYLE_HTTP}''>${CODE_HTTP}</td>
+		<td class='${STYLE_ENC}'>${ENCODING}</td>
+		<td class='${STYLE_NB}'>${NB_MOTS}</td>
+	</tr>" >> ${fichier}
+```
+Sinon le comportement par défaut est de ne pas avoir de classe particulière.
+
+- [x] rajouter à chaque fois le lien vers le site, ex : ✅ 2025-11-17
 ```html
 <tr><a href="https://roboty.magistry.fr">https://roboty.magistry.fr</a></tr>
 ```
-- [ ] style qui met en valeur une ligne au survol → `table is-hoverable`
-- [ ] centrer la table → pas encore trouvé, mais à défaut je peux mettre fullwidth et définir une div centrée dans laquelle est mise la table : 
-	- [ ] `table is-fullwitdh`
+- [x] style qui met en valeur une ligne au survol → `table is-hoverable` ✅ 2025-11-17
+- [x] centrer la table → pas encore trouvé, mais à défaut je peux mettre fullwidth et définir une div centrée dans laquelle est mise la table : ✅ 2025-11-17
+	- [x] `table is-fullwitdh` ✅ 2025-11-17
 	- cf div utilisée dans index ↓
-- [ ] mettre même fond à tableau qu'à index: rajouter les sections et divisions dans le body, autour de la table
+- [x] mettre même fond à tableau qu'à index: rajouter les sections et divisions dans le body, autour de la table ✅ 2025-11-17
 Je rajoute au début la même entête de page web que pour l'index : 
 ```html
 <body>
@@ -1714,7 +1735,7 @@ Et je mets un petit titre à la table (qui est, elle, dans sa propre division) :
 				<h3 class="title is-3 has-text-centered has-background-link-light">Informations sur les sites webs</h3>
 			</section>
 ```
-- [ ] faire en sorte que le "background" noir fasse la hauteur de la page
+- [x] faire en sorte que le "background" noir fasse la hauteur de la page ✅ 2025-11-17
 → attribut `is-fullheight` dans la section avec le fond noir.
 
 *Sur index :* 
@@ -1761,6 +1782,52 @@ J'ai fait un encart de titre à part avec titre et logo côte à côte (à utili
 ⚠️ pas le même chemin relatif vers le logo selon la page (tableau ou index) comme pas placés au même endroit du projet.
 - façon absolue de le faire ? → le souci c'est que si je mets un chemin "absolu" ça place par rapport à où la page est ouverte... pas l'air de marcher...
 
-
 **Pour une autre fois si j'ai du temps, je trouverais cool de chercher comment :**
 - [ ] hauteur de la page, ni plus ni moins (et que le reste soit scrollable)
+
+
+**Quelques problèmes rencontrés:**
+- quand j'ai voulu insérer le HTML que j'avais écrit dans le fichier `.sh`, j'avais le souci que mon html contenait des informations entre `"` qui n'étaient pas compatibles avec la commande : 
+```bash
+echo -e "
+	<le code html que je voulais mettre dans le programme, qui peut contenir des ">
+" >> ${fichier}
+```
+- ma solution a été de transformer tous les `"` en → `'`. Mais ce n'était pas très pratique. Pour bien faire, il aurait fallu que je trouve un équivalent du `"""` en Python, pour isoler un texte avec retours à la ligne etc.
+
+Mon tableau final : 
+<figure>
+	<img src="PJ/tableau_final_miniprojet_1.png" />
+	<figcaption>Tableau final miniprojet 3 - v1</figcaption>
+ </figure>
+
+**Note:**
+- Je viens seulement de remarquer que je n'avais pas bien traité le cas de ce site web "[fr.wikipedia.org/wiki/Robot_d%27indexation](fr.wikipedia.org/wiki/Robot_d%27indexation)" pour lequel je n'ai pas fait en sorte de suivre la redirection (vers https://fr.wikipedia.org/wiki/Robot_d%27indexation). 
+- Jusqu'ici, j'avais donc un cdoe d'erreur http "301".
+- Pour y remédier et *suivre la redirection*, **j'ajoute un flag `-L` à ma commande cURL dans le programme.** → elle ne change pas le code HTTP affiché (redirection) mais permet au moins de récupérer le bon encodage (cf-ci-dessous)!
+
+Tableau vraiment final : 
+
+<figure>
+	<img src="PJ/tableau_final_miniprojet_2.png" />
+	<figcaption>Tableau final miniprojet 3 - v2</figcaption>
+ </figure>
+
+Enfin, j'ai rajouté à la table un contenant pour la rendre scrollable horizontalement (bien pour page très étroite).
+```html
+<div class="table-container">
+  <table class="table">
+    <!-- Your table content -->
+  </table>
+</div>
+```
+→ [source](https://bulma.io/documentation/elements/table/).
+
+<figure>
+	<img src="PJ/visu_miniprojet.png" />
+	<figcaption>Visuel index miniprojet</figcaption>
+ </figure>
+
+Lien vers ma page : https://tejante132.github.io/PPE1-2025/
+Tout marche ! j'envoie le tag.
+
