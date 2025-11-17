@@ -1621,14 +1621,146 @@ Point sympa : le site est mis à jour à chaque push ! :D
 
 ### Finaliser le miniprojet (avec pages)
 
-- [ ] Devoirs finition du miniprojet 📅 2025-11-16
-	- [ ] Créer une page d'accueil index.html qui utilise le *style Bulma* avec : 
+- [ ] Devoirs finition du miniprojet 3🔼 📅 2025-11-18
+	- [x] Créer une page d'accueil index.html qui utilise le *style Bulma* avec : ✅ 2025-11-17
 		- [x] une présentation rapide du mini-projet ✅ 2025-11-12
 		- [x] lien vers la page HTML qui contient le tableau de résultat (genre "cliquer ici pour accéder au tableau" avec un `<a href="lien_vers_tableau">` I guess) ✅ 2025-11-12
 	- [x] *Déployer* (= push) une première fois la page pour vérifier que ça fonctionne ✅ 2025-11-12
 	- [ ] rajouter un peu de style [[CSS]] pour avoir une jolie page
-	- [ ] mettre à jour le script de façon à générer directement la page avec le [[style Bulma]] qu'on lui a créé.
+		- [x] j'ai fait quelques trucs marrant ✅ 2025-11-17
+			- ex : rajouté un lien vers plurital quand on clique sur le logo, fond, liens vers la liste d'URL et le tableau.
+		- [x] aussi mettre joli tableau ✅ 2025-11-17
+			- [ ] d'abord faire à la main une mise en page sympa du tableau depuis le fichier .html et noter les modifications effectuées 
+			- [ ] puis l'intégrer dans `miniprojet.sh`, i.e. mettre à jour le script de façon à générer directement la page avec le style Bulma qu'on lui a créé.
 	- [ ] Créer tag `miniprojet-3`.
 Déployer (push) à chaque étape pour voir la page mise à jour, jusqu'à avoir un résultat fonctionnel.
 
 cf [[style Bulma]], [[html-css.pdf]]
+
+pages ouvertes pour reprendre la prochaine fois : 
+- file:///home/clotilde/Documents/Obsidian%20Vault/Obsidian-Plurital/S7/PPE/PPE1-2025/index.html
+- https://bulma.io/documentation/elements/image/
+- [x] https://bulma.io/documentation/elements/table/ ✅ 2025-11-17
+- file:///home/clotilde/Documents/Obsidian%20Vault/Obsidian-Plurital/S7/PPE/PPE1-2526/exempliers/DemoBulma/3_index_bulma.html
+- https://github.com/Tejante132/PPE1-2025
+- https://github.com/Tejante132/PPE1-2025/tags
+
+*Remarque sur les liens*: 
+	Il semble que quand on utilise une balise `<a href="...">`, html (?) identifie tout seul si la source donnée semble être un fichier "local" (ou page reliée, par exemple lien vers un autre fichier .html) ou un site web à partir de la structure de la référence donnée.
+	→ Quand j'ai essayé de faire un lien vers "plurital.org", ça essayait de me trouver un fichier local éponyme, jusqu'à ce que je rajoute "https://" devant.
+
+Mon 17.11.2025
+**MVP**
+Modifications effectuées sur tableau-fr.html pour styliser (coché = rajouté dans `miniprojet.sh`) : 
+- [ ] ajouter dans la balise d'entête `<head>` le lien vers le style Bulma:
+```html
+	<link
+	rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/versions/bulma-no-dark-mode.min.css">
+```
+
+- [ ] dans la balise ouvrante de la table, rajouter le style Bulma de table : 
+```html
+<table class="table">
+```
+
+- [ ] préciser en Bulma la ligne d'entête en ajoutant une balise `<thead>` qui entoure la ligne d'entête
+```html
+<thead>
+	<tr><th>N</th>.....<tr>
+</thead>
+```
+→ dans le style que j'ai choisi, ça a juste rendu un peu plus épais le trait entre la première ligne et les suivantes.
+
+= éléments minima pour les devoirs.
+
+**Pour aller + loin (parce qu'on s'amuse bien en PPE)**
+*Sur tableau (miniprojet.sh)*
+Je regarde pour le *fun* si je peux ajouter quelques autres options sympas, par exemple essayer de faire en sorte que les pages aient le même style (index et tableau).
+- [ ] rajouter un style spécial aux cases dans le cas où on n'a pas trouvé une certaine info, ex
+```html
+		<tr>
+			<td>https://roboty.magistry.fr</td>
+			<td class="is-warning">000</td>
+			<td class="is-warning">N/A</td>
+			<td class="is-warning">0</td>
+		</tr>
+```
+- [ ] rajouter à chaque fois le lien vers le site, ex : 
+```html
+<tr><a href="https://roboty.magistry.fr">https://roboty.magistry.fr</a></tr>
+```
+- [ ] style qui met en valeur une ligne au survol → `table is-hoverable`
+- [ ] centrer la table → pas encore trouvé, mais à défaut je peux mettre fullwidth et définir une div centrée dans laquelle est mise la table : 
+	- [ ] `table is-fullwitdh`
+	- cf div utilisée dans index ↓
+- [ ] mettre même fond à tableau qu'à index: rajouter les sections et divisions dans le body, autour de la table
+Je rajoute au début la même entête de page web que pour l'index : 
+```html
+<body>
+	<section class="section has-background-black">
+		<div class="container has-background-white">
+			<table....
+			.....
+			</table>
+		</div>
+	</section>
+</body>
+```
+J'ai choisi un fond noir pour aller avec le logo plurital sur la page d'index :) et puis ça va bien avec le jaune aussi.
+Et je mets un petit titre à la table (qui est, elle, dans sa propre division) : 
+```html
+			<section class="section column">
+				<h3 class="title is-3 has-text-centered has-background-link-light">Informations sur les sites webs</h3>
+			</section>
+```
+- [ ] faire en sorte que le "background" noir fasse la hauteur de la page
+→ attribut `is-fullheight` dans la section avec le fond noir.
+
+*Sur index :* 
+- J'ai mis le titre tout seul sur le fond gris / noir selon en blanc (`title has-text-white`) + le logo plurital
+```html
+<h1 class="title has-text-centered has-text-white">Informations sur les sites webs</h1>
+<figure class="image">
+		<a href="https://plurital.org"><img src="../PJ/plurital-logo.jpg" /></a>
+</figure>
+<br />
+```
+cf https://bulma.io/documentation/helpers/color-helpers/ 
+- ajouté des titres de sections avec fond, comme le prof
+Il faut préciser dans la class title le numéro de titre. Plus on prend un numéro élevé, plus la police est petite : 
+```html
+<h4 class="title is-4 has-background-link-light">C'est quoi le miniprojet de PPE ?</h2>
+```
+
+- [x] ajouter une image à droite du texte (voir pour faire des colonnes), par exemple depuis l'URL https://cdn-blog.superprof.com/blog_fr/wp-content/uploads/2020/11/cours-informatique-programmation-973x649.jpg.webp , ou plutôt par exemple mettre le logo plurital à droite ou gauche du titre *si la page est plus grande qu'une certaine largeur*. → parce qu'en fait je regardais tout en moitié d'écran et j'aimais bien le rendu, mais en essayant de mettre en pleine page je trouve ça moche moche. ✅ 2025-11-17
+      https://bulma.io/documentation/columns/responsiveness/
+```html
+<div class="columns is-vcentered">
+  <div class="column">1</div>
+  <div class="column">2</div>
+  <div class="column">3</div>
+  <div class="column">4</div>
+</div>
+```
+→ ce qui est super c'est que **par défaut les colonnes ne s'affichent côte à côté que pour tablette et + grand (tablette, desktop)**; elles s'affichent l'*une après l'autre* sur mobile (correspond aussi pour moi à quand je réduit beaucoup la largeur de la fenêtre) *sauf* si on rajoute `is-mobile` ([source](https://bulma.io/documentation/columns/responsiveness/)). A l'inverse, si je veux seulement les colonnes pour le desktop, je peux utiliser `is-desktop`. 
+→ je peux centrer verticalement le texte dans les colonnes avec `is-vcentered` ([source](https://stackoverflow.com/questions/44897794/how-to-vertically-center-elements-in-bulma)).
+J'ai fait un encart de titre à part avec titre et logo côte à côte (à utiliser aussi pour `miniprojet.sh` → tableau)
+```html
+<!-- Encart titre et logo côte à côte -->
+<br />
+<div class="columns is-vcentered">
+	<div class="column">
+		<figure class="image">
+			<a href="https://plurital.org"><img src="PJ/plurital-logo.jpg" /></a>
+		</figure>
+	</div>
+	<div class="column"><h1 class="title is-1 is-1-desktop is-2-tablet is-6-mobile has-text-centered has-text-white">Miniprojet de PPE</h1></div>
+</div>
+```
+⚠️ pas le même chemin relatif vers le logo selon la page (tableau ou index) comme pas placés au même endroit du projet.
+- façon absolue de le faire ? → le souci c'est que si je mets un chemin "absolu" ça place par rapport à où la page est ouverte... pas l'air de marcher...
+
+
+**Pour une autre fois si j'ai du temps, je trouverais cool de chercher comment :**
+- [ ] hauteur de la page, ni plus ni moins (et que le reste soit scrollable)
