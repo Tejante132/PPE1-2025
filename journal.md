@@ -1831,3 +1831,74 @@ Enfin, j'ai rajouté à la table un contenant pour la rendre scrollable horizont
 Lien vers ma page : https://tejante132.github.io/PPE1-2025/
 Tout marche ! j'envoie le tag.
 
+
+## Wed 19.11.2025 [[expression régulière|Regex]] et [[projet PPE]]
+
+### [[expression régulière|Regex]]
+Je n'arrive pas à utiliser le marqueur `^` pour signifier u'une expression qui suit est à trouver en début d'une chaîne... idem pour `\b` et `\B`
+- [ ] quel est le souci ? `^`
+
+> /^qu / gm
+^ asserts position at start of a line
+	qu matches the characters qu literally (case sensitive)
+	Global pattern flags 
+	*g modifier*: global. All matches (don't return after first match)
+	*m modifier*: multi line. Causes ^ and $ to match the begin/end of each line (not only begin/end of string)
+(informations sur https://regex101.com/ ...)
+
+
+*Exo : essayer de repérer :* 
+- un numéro de téléphone (avec ou sans indicatif du pays ?)
+- une adresse-mail
+- toutes les formes du verbe "manger" dans un texte français
+
+> À des fins d'entraînement, je vais vous donner quelques informations pour me joindre : 
+> - mon numéro de téléphone : +33 6 95 17 39 19.
+> - adresse-mail : clotildegg@gmail.com
+> - et puis on va dire que j'ai très envie de manger parce que je n'ai pas assez mangé ce matin. Genre à chaque fois que je dis qu'il faut que je mange mais bien évidemment je le fais pas. 
+> Et toi est-ce que tu manges assez ? Et si nous mangions ensemble un jour ?
+> Et j'y pense, si c'est plus pratique, voici encore mon téléphone sous d'autres formes : 
+> 0695173919, ou bien encore 06 95 17 39 19, et enfin +33695173919.
+> Des bisous !
+
+*Num tel*
+`[0-9] ?[0-9] ?[0-9] ?[0-9] ?[0-9] ?[0-9] ?[0-9] ?[0-9] ?[0-9] ?[0-9] ?`
+→ permet de capter des séries de 10 nombres avec ou sans espaces entre eux
+→ on trouve : 
+	33 6 95 17 39 1 **→ non complet !**
+	0695173919
+	06 95 17 39 19
+	3369517391 **→ non complet !**
+
+`[0-9][0-9] ?[0-9][0-9] ?[0-9][0-9] ?[0-9][0-9] ?[0-9][0-9]`
+→ permet de capter des séries de 10 nombres avec ou sans espaces entre les nombres tous les 2 nombres
+→ trouve : "0695173919", "06 95 17 39 19", "3369517391" **→ non complet !**
+
+On n'a pas l'air de pouvoir faire ça : 
+`([0-9][0-9] ?){10,13}`
+
+Ce serait bien de pouvoir dire u'après ce n'est plus un numéro de téléphone...
+
+
+*Adresse mail*
+`[a-z._]+@[a-z]+\.[a-z]{1,4}`
+→ renvoie clotildegg@gmail.com
+
+Des choses que j'ai essayées mais qui n'ont pas semblé marcher : `[a-z._]+@[a-z]+\.["com"|"fr"|"org"]` ni `[a-z._]+@[a-z]+\.[com|fr|org]`.
+- [ ] comment modifier ? peut-on suivre cette idée ?
+
+
+*Toutes les formes du verbe manger*
+ `mang[^ ]+` permet d'avoir toutes les formes qui commencent par "mang" suivi d'un nombre non-nul de caractères quelconques sauf espace (fin de mot à priori).
+
+⚠️ `mang.+` sélectionnait toute la phrase après le "mang", pas d'arrêt.
+⚠️ mais en fait comme le j'ai fait ça marche juste parce que mes itérations de manger sont toutes suivies d'un espace, mais pour bien faire il faudrait mettre toutes les possibles fins de mots (voif [[séparateur]]) *→ blanc, tiret, apostrophe, ponctuation, point...*
+
+`mang[^ ,.!()\-']+` → semble pas mal !
+→ renvoie : 
+	manger
+	mangé
+	mange
+	manges
+	mangions
+
