@@ -1546,7 +1546,7 @@ En mettant en en-tête (balises `<th>`) les étiquettes des infos récupérées.
 
 ---
 ## Wed 12.11.2025
-### Correction miniprojet 3
+### Correction miniprojet 2
 
 Petit tip : on peut utiliser **F12** (ou inspecter) sur une phrase pour observer en vis-à-vis le l'interprétation du navigateur et le rendu final.
 
@@ -1831,8 +1831,8 @@ Enfin, j'ai rajouté à la table un contenant pour la rendre scrollable horizont
 Lien vers ma page : https://tejante132.github.io/PPE1-2025/
 Tout marche ! j'envoie le tag.
 
+## Tue 18.11.2025
 
-## Wed 19.11.2025 [[expression régulière|Regex]] et [[projet PPE]]
 
 ### [[expression régulière|Regex]]
 Je n'arrive pas à utiliser le marqueur `^` pour signifier u'une expression qui suit est à trouver en début d'une chaîne... idem pour `\b` et `\B`
@@ -1901,4 +1901,96 @@ Des choses que j'ai essayées mais qui n'ont pas semblé marcher : `[a-z._]+@[a-
 	mange
 	manges
 	mangions
+
+## Wed 19.11.2025 [[expression régulière|Regex]] et [[projet PPE]]
+
+### [[expression régulière|Regex]] suite
+
+On fait des tests à partir d'un document donné cette fois. → https://regex101.com/
+
+**Recherche d'URLS**
+
+Notion d'expression "gourmande" ou "non gourmande". En mettant un `?` après un `*`, on lui dit d'être non gourmand. 
+
+J'ai fait comme ça : 
+`\b(https:\/\/)?(www.)?[a-zA-Z\-0-9]+(\.[a-z]+)+\b`
+- Problème : trouve aussi les morceaux d'adresse-mail car je les ai autorisés à ne pas avoir https ni www au début.
+
+puis  `\b((https?:\/\/)|(www.))+[a-zA-Z\-0-9]+(\.[a-z\/]+)+\b`
+- ajout : groupe avec une disjonction ("ou") entre https? et www. (au moins 1 exemplaire)
+	- est-ce que ça reconnaîtrait un https://www. ... ? → oui ! (ex ça reconnait http://www.humanisti.ca)
+- problème : je n'arrive pas à inclure les potentiels caractères à la fin de l'URL (comme `/` ou `?`).
+- bon point : pour le momet je n'inclue pas les `.` qui peuvent suivre une URL mais qui sont de la ponctuation et ne font pas partie de l'URL.
+	- ça peut être un souci parfois qu'on inclue involontairement la ponctuation qui suit une regex.
+	- il faut trouver un moyen d'inclure juste les caractères qu'on peut avoir en fin d'URL → a priori : "?", "/", peut-être aussi "@" ??
+	- peut-être que pour le moment je n'ai pas le point de fin qui est inclu parce que j'ai mis des limites de mot ??
+
+Essayons d'inclure les caractères à la fin par lesquels ça peut finir: 
+`((https?:\/\/)|(www.))+([a-zA-Z\-_0-9?\.]+)+\.[a-z\/?]+`
+Il me manque ici le cas de figure de la suire après le .fr dans "https://groupes.renater.fr/sympa/signoff/dh?previous_action=info" où je ne trouve l'expression que jusqu'à previous
+
+Solution du prof qui semble marcher bien : 
+	`(https?:\/\/|www.)[^\s]+([a-zA-Z0-9]\/?)+`
+
+⚠️ le match est par défaut multiligne, d'où l'intérêt de préciser qu'on n'est pas un caractère d'espacement (retour ligne etc) avec `[^\s]` → `\s` correspond à 
+
+- problème : actuellement on pourrait capter "https://groupes.renater.f/sympa/info/dh" mais nous on feut seulement des trucs qui finissent par des terminaisons possibles (pas juste .f)
+
+
+**Pour le faire en terminal sur linux :** 
+dans le dossier qui contient le fichier .txt, 
+on utilise `-P` avec `grep` pour pouvoir utiliser quasi les mêmes regex que sur regex101.
+
+```bash
+cat mail-liste-hn.txt | grep -E '((https?:\/\/)|(www.))+([a-zA-Z\-_0-9?\.]+)+\.[a-z\/?]+' -o
+```
+
+renvoie : 
+	http://www.humanisti.ca/
+	https://groupes.renater.fr/sympa/info/dh
+	https://groupes.renater.fr/sympa/signoff/dh?previous
+	www.humanisti.ca/adhesion/
+
+Autre possibilité pour les lettres maj et min (ASCII non diacrités) : `[aA-zZ]+`
+→ ajout de caractèrees diacrités dont on pourrait avoir besion : `[aA-zZéàèêùëäüö]+`
+→ sinon en faisant ça : `[aA-zZà-ï]+` on peut récupérer les caractères compris sur la table d'encodage utilisé entre `à` et `ï`, **mais ça dépend de la table utilisée**... → un peu bourbier !
+<figure>
+	<img src="https://cs61.seas.harvard.edu/site/img/iso8859-1.png" />
+	<figcaption>Exemple de table ASCII étendue</figcaption>
+ </figure>
+ Quelques trucs sympas : 
+
+| Expr      | Rôle                                                                                                                                | ex                 |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
+| `\p{han}` | reconnaît les caractères chinois                                                                                                    | "啊" et "的"         |
+| `\p{l}`   | une lettre                                                                                                                          | "a", "O", "的"      |
+| `\p{ll}`  | lettre latine                                                                                                                       | PAS LES MAJUSCULES |
+| `\p{l}+`  | un mot<br>⚠️ ne sépare pas les mots en chinois (peut nous mettre toute une phrase jusqu'au prochain signe de poncutation ou espace) | "Chères", "啊的"<br> |
+
+SED
+
+```bash
+cat pg16066.txt | grep moulins | sed 's/moulins \(...\)/ \1 MOULINS/'
+```
+
+renvoit : 
+```
+celle du Port-Lapice[23]; d'autres, celle des  à v MOULINSent. Mais
+l'épouvantable et inimaginable aventure des  à v MOULINSent, avec
+En ce moment ils découvrirent trente ou quarante  à v MOULINSent
+ne sont pas des géants, mais des  à v MOULINSent, et ce qui paraît
+qu'à coup sûr c'étaient des  à v MOULINSent et non des géants qu'il
+autre chose que des  à v MOULINSent, et qu'il fallait, pour s'y
+cabinet, a changé ces géants en  pou MOULINSr m'enlever la gloire
+-- Ceci, répondit Sancho, m'a l'air d'être pire que les moulins à
+aurait bien voulu se mettre à l'abri en entrant dans les moulins à
+ignorance des  à f MOULINSoulon, ni sur l'obscurité de la nuit. Je
+ à f MOULINSoulon, mais sans tourner la tête pour les regarder,
+semé ou récolté passait par mes mains. Les  d'h MOULINSuile, les
+```
+
+### Gestion d'erreurs sur git
+cf [[Git erreurs]] ([[git-intro_and_more.pdf#page=61&annotation=374R|git-intro_and_more, page 61]] ou [[git-more.pdf]])
+
+- [ ] Exos : [[git-more-exercices-nohelp.pdf]] 🔼 📅 2025-11-24
 
