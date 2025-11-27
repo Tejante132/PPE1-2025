@@ -1994,3 +1994,232 @@ cf [[Git erreurs]] ([[git-intro_and_more.pdf#page=61&annotation=374R|git-intro_a
 
 - [ ] Exos : [[git-more-exercices-nohelp.pdf]] 🔼 📅 2025-11-24
 
+Tue 25.11.2025
+On crée un conflit manuellement en faisant une modification différente du MAIN de git-along sur ma version locale et sur la version web.
+Après avoir changé la version web, la commande `git status` ne repère pas directement le problème : il faut pour cela d'abord récupérer les dernières infos / métadonnées du dépôt avec `git fetch`. Ensuite, la commande `git status` renvoie que le dépôt est en retard de un *commit* : 
+
+```bash
+On branch main
+Your branch is behind 'origin/main' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+nothing to commit, working tree clean
+```
+
+En essayant de pousser de nouvelles modifications sur le dépôt local, on a donc les messages d'erreur : 
+
+```bash
+To github.com:Tejante132/git-along.git
+ ! [rejected]        main -> main (non-fast-forward)
+error: failed to push some refs to 'github.com:Tejante132/git-along.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. If you want to integrate the remote changes,
+hint: use 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
+
+Pour résoudre ça, on annule d'abord son commit. En effet, *Tant que le dossier local aura au moins un commit d'avance, il sera impossible de récupérer les modifications du dépôt en ligne*.
+→ **Etape 1** : annuler la mise-en-place, tout en gardant les changements (==mise-en-place = `add .` ???????==)
+1. Récupérer les **métadonnées** du dépôt en ligne (`git fetch`)
+2. vérifier **statut** du dépôt pour savoir de combien de commits on est en avance (`git status` → ici, 1 commit d'avance)
+3. Faire un **[[Git erreurs|git reset]] de ce nombre de commits** pour retourner au *dernier commit en commun* entre le dépôt en ligne et votre dossier local . (`git reset 1` → par défaut c'est 1, donc on aurait aussi pu écrire direct `git reset`)
+
+On arrive au message : 
+
+```bash
+On branch main
+Your branch and 'origin/main' have diverged,
+and have 1 and 1 different commits each, respectively.
+  (use "git pull" if you want to integrate the remote branch with yours)
+
+nothing to commit, working tree clean
+```
+
+→ **Etape 2** : mettre de côté les modifications
+Les modifications sont encore présentes dans le dossier, ce qui peut empêcher de récupérer les modifs en ligne. Pour pouvoir récupérer les modifs en ligne, on va d'abord mettre de côté nos modifs.
+On peut voir nos modifs courantes (mais pas `add`) en regardant le `git status` du dépôt.
+La commande `git stash` est la bonnefaçon de mettre de côté nos modifs.
+
+```bash
+git stash push [-m <message>]
+```
+
+Mais bizarrement, moi, quand je le fais, ça me dit : 
+
+```bash
+$ git stash push -m "essai du tapis"
+No local changes to save
+```
+
+Pour savoir sur quel commit on est : 
+
+```bash
+git show --oneline -s
+```
+
+par exemple moi : 6b59888 (HEAD -> main) tentative de modif
+
+
+## Wed 26.11.2025
+### pip, venv, ...
+
+cf [[uv-venvs.pdf]], [[environnement virtuel]]
+
+J'avais déjà travaillé pour mon mémoire de master en Allemagne et en école d'ingénieur pour des projets de programmation avec des venvs. En l'occurrence j'ai déjà créé un : `$HOME/NLP-venv` (chez moi `/home/clotilde/NLP-venv`).
+
+*exemple*
+```bash
+uv venv $HOME/venv/plurital
+```
+chez moi : 
+```bash
+uv venv $HOME/NLP-venv
+```
+
+- [ ] Peut-on déplacer un venv ? si par exemple je veux déplacer mon venv vers un dossier "venv".
+
+Il faut choisir un dossier où on a les devoirs de lecture écriture, pas dans un dossier système. On doit juste pouvoir y avoir accès.
+
+Note : les programmes que je lance sur codium se lancent par défaut souvent sur 
+<figure>
+	<img src="PJ/sélection_venv_default_codium.png" />
+	<figcaption>Environnement virtuel proposé par défaut par codium</figcaption>
+ </figure>
+Je suppose par contre que si j'active mon venv depuis un terminal et que je lance codium après avoir activé mon venv, il me proposera alors de run les programmes dans ce venv.
+
+J'avais vraisemblablement aussi créé un venv pour le cours de Corpus Multilingues et Traduction (CMT) ↓ cf tout en bas. Ensuite il semble que chaque version de Python a son environnement propre ???
+<figure>
+	<img src="PJ/venv_selector_codium.png" />
+	<figcaption>Sélecteur d'environnement où lancer le programme dan codium</figcaption>
+ </figure>
+Mais je ne comprends pas pourquoi là ça ne repère pas mon petit venv NLP-venv. C'est peut-être parce que le chemin du venv n'est pas dans le $PATH?? → le "path" pour python3 est ce qui s'affiche quand on utilise `whereis python3`...
+Chez moi cette commande (lorsque le venv NLP-venv eset activé) donne : 
+```bash
+python3: /usr/bin/python3 /usr/lib/python3 /etc/python3 /usr/share/python3 /home/clotilde/NLP-venv/bin/python3 /usr/share/man/man1/python3.1.gz
+```
+- [ ] Mais pourquoi j'ai bien le venv que je veux (NLP-venv), mais pas CMT, alors que c'est l'inverse qui s'affiche / se propose dans codium ??
+Ou peut-être parce que j'avais créé le venv CMT depuis Codium ? (je ne me souviens pas)
+
+Quoi qu'il en soit, en lançant codium avec la commande `codium` depuis un terminal 
+dans lequel est activé l'environnement virtuel NLP-venv, 
+```bash
+source ~/NLP-venv/bin/activate
+codium
+```
+on peut désormais bien voir l'environnement virtuel dans la liste donnée : 
+<figure>
+	<img src="PJ/select_venv_from_venv_codium.png" />
+	<figcaption>NLP-venv apparait dans la liste de sélection de venv de codium</figcaption>
+ </figure>
+
+
+### Wordcloud
+
+On utilise [[wordcloud]] sur un petit livre. 
+
+```bash
+wordcloud_cli --text ../PJ/pg16066.txt --imagefile pg16066.png
+```
+
+Résultat bof utile car on n'a quasiment que des mots grammaticaux.
+<figure>
+	<img src="wordcloud/pg16066.png" />
+	<figcaption>Premier essai de wordcloud</figcaption>
+ </figure>
+On rajoute des "stopwords" qui ne seront pas considérés, les mots non lexicaux : 
+```bash
+echo "le
+en
+et
+à
+de" > stopwords.txt
+```
+
+Puis on relance wordcloud avec les stopwords : 
+```bash
+wordcloud_cli --text pg16066.txt --imagefile pg16066.png --stopwords stopwords.txt
+```
+
+```columns
+id: dMcwC-DJU77SN_23VXzQG
+===
+<figure>
+	<img src="wordcloud/pg16066_v3.png" />
+	<figcaption>Ajout de quelques stopwords</figcaption>
+ </figure>
+
+<figure>
+	<img src="wordcloud/pg16066_v4.png" />
+	<figcaption>Avec une liste sur internet</figcaption>
+ </figure>
+
+===
+
+<figure>
+	<img src="wordcloud/pg16066_v5.png" />
+	<figcaption>Avec une autre liste</figcaption>
+ </figure>
+<figure>
+	<img src="wordcloud/pg16066_v6.png" />
+	<figcaption>Avec la liste concaténée et une autre</figcaption>
+ </figure>
+
+```
+
+On en rajoute encore plein !!! j'ai essayé de faire avec des listes récupérées sur internet, mais ça m'a quand-même affiché des mots contractés à rajouter : 
+`qu'il, c'est, qu'on, qu'elle, d'un, c'était, j'ai`...
+Et je vais essayer de concaténer mes stopwords.
+
+*Autres utilisations* : on peut s'amuser à utiliser des **masques** pour changer par exemple la couleur de fond ou la forme du nuage de mots.
+
+Pour que le nuage de mots s'effectue bien, il faut effectuer une segmentation préalable dans certaines langues.
+### Segmentation d'autres langues
+On va installer des paquets pour aider à bien découper d'autres langues.
+→ `ressources/tokenization/Chinois` + package `thulac`
+
+```
+└── tokenization
+    ├── Chinois
+    │   ├── chinois.txt
+    │   ├── requirements.txt
+    │   └── tokenize_chinese.py
+    ├── Coréen
+    │   ├── coréen.txt
+    │   ├── requirements.txt
+    │   ├── robot-ko.txt
+    │   └── tokenize_ko.py
+    ├── Japonais
+    │   ├── japonais.txt
+    │   ├── requirements.txt
+    │   └── tokenize_japanese.py
+    └── Vietnamien
+        ├── requirements.txt
+        ├── tokenize_vietnamese.py
+        └── vietnamien.txt
+```
+
+Et maintenant on peut utiliser :
+```bash
+python tokenize_chinese.py chinois.txt > chinois_seg.txt
+```
+
+Pour le chinois par exemple, le package `thulac` permet avec le programme `tokenize_chinese.py` de séparer par des espaces tous les "mots" chinois. On sait qu'on a besoin d'installer `thulac` (`uv pip install thulac`) pour utiliser le programme grace au fichier `requirements.txt`.
+
+Pour automatiquement installer la liste de dépendances : 
+```bash
+pip install -r requirements.txt
+```
+
+*Exemple :* 
+
+| Avant (text d'origine)                  | Après (espaces entre mots)                                 |
+| --------------------------------------- | ---------------------------------------------------------- |
+| `由清华大学自然语言处理与社会人文计算实验室研制推出的一套中文词法分析工具包` | `由 清华大学 自然 语言 处理 与 社会 人文 计算 实验室 研制 推出 的 一 套 中文 词法 分析 工具 包` |
+On peut utiliser des ressources similaires pour le coréen, vietnamien, ...
+
+
+### Textométrie avec Trameur
+
+Lien vers [trameur](http://www.tal.univ-paris3.fr/trameur/).
+
+[[Textométrie]]
