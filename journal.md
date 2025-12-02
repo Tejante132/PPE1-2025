@@ -1992,7 +1992,7 @@ semé ou récolté passait par mes mains. Les  d'h MOULINSuile, les
 ### Gestion d'erreurs sur git
 cf [[Git erreurs]] ([[git-intro_and_more.pdf#page=61&annotation=374R|git-intro_and_more, page 61]] ou [[git-more.pdf]])
 
-- [ ] Exos : [[git-more-exercices-nohelp.pdf]] 🔼 📅 2025-11-24
+- [ ] Exos : [[git-more-exercices-nohelp.pdf]] 📅 2025-11-24
 
 Tue 25.11.2025
 On crée un conflit manuellement en faisant une modification différente du MAIN de git-along sur ma version locale et sur la version web.
@@ -2080,7 +2080,7 @@ uv venv $HOME/NLP-venv
 
 Il faut choisir un dossier où on a les devoirs de lecture écriture, pas dans un dossier système. On doit juste pouvoir y avoir accès.
 
-Note : les programmes que je lance sur codium se lancent par défaut souvent sur 
+Note : les programmes que je lance sur codium se lancent par défaut souvent sur .venv (cf capture d'écran ci-dessous). 
 <figure>
 	<img src="PJ/sélection_venv_default_codium.png" />
 	<figcaption>Environnement virtuel proposé par défaut par codium</figcaption>
@@ -2106,7 +2106,8 @@ dans lequel est activé l'environnement virtuel NLP-venv,
 source ~/NLP-venv/bin/activate
 codium
 ```
-on peut désormais bien voir l'environnement virtuel dans la liste donnée : 
+
+On peut désormais bien voir l'environnement virtuel dans la liste donnée : 
 <figure>
 	<img src="PJ/select_venv_from_venv_codium.png" />
 	<figcaption>NLP-venv apparait dans la liste de sélection de venv de codium</figcaption>
