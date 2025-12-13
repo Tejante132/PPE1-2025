@@ -2224,3 +2224,32 @@ On peut utiliser des ressources similaires pour le coréen, vietnamien, ...
 Lien vers [trameur](http://www.tal.univ-paris3.fr/trameur/).
 
 [[Textométrie]]
+
+
+
+## Wed 03.12.2025 
+### [[projet PPE]]
+
+Idées de mot : 
+
+
+| glass                                                                       | Glas                                                                             | verre                                                                                | glace                              |
+| --------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ---------------------------------- |
+| le verre (matériau)                                                         | matériau le verre <br><br>ex: *ein Fenster aus Glas* = une fenêtre en verre      | le matériau transparent                                                              | la glace qu'on mange               |
+| le verre dans lequel on boit<br><br>ex: *a stemmed glass* = verre à pied    | verre dans lequel on boît <br><br>ex: *Weinglas, Sektglas* = verre à vin, à pied | le verre dans lequel on boit <br><br>ex : *"un verre à pied"*                        | la glace où on se regarde (miroir) |
+| métonymie : ce qu'on voit<br><br>ex : "*a glass of wine*" = un verre de vin | métonymie : ce qu'on boit <br><br>ex: *ein Glas Wein* : un verre de vin          | métonymie : ce qu'on boit<br><br>ex: *un verre d'eau* (on boit bien l'eau, du verre) |                                    |
+| au pluriel : *glasses* = des lunettees                                      | au pluriel : *Gläser* = des lunettes (contexte plutôt médical)                   | le *verre* d'une lunette                                                             |                                    |
+|                                                                             | au sens bocal <br><br>ex: *Schraubenglas* : bocal                                |                                                                                      |                                    |
+
+
+Mot retenu : 
+
+
+| Anglais : **fantasy**                                                                                                  | Portugais : **fantasia**   | Allemand : **Fantasie** |
+| ---------------------------------------------------------------------------------------------------------------------- | -------------------------- | ----------------------- |
+| fantasme                                                                                                               | fantasme                   | fantasme                |
+| imagination :   <br>*the faculty or activity of imagining things, especially things that are impossible or improbable* | imagination (fantaisie)    | imagination             |
+| création (moins courant)                                                                                               | costume                    | -                       |
+| le genre littéraire                                                                                                    | genre littéraire (fantasy) | -                       |
+| en musique                                                                                                             |                            |                         |
+
