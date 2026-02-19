@@ -134,7 +134,7 @@ Il faut vraiment faire bien attention aux utilisations de variables dans un nom 
 [[git-intro-exercices.pdf]]
 Mon 06.10.2025
 
-Création d'un repo git dans lequel on mettra le [[journal]]. 
+Création d'un repo git dans lequel on mettra le [[journal_PPE1]]. 
 Concrètement moi je vais déplacer mes notes faites dans Obsidian dans un repo public pour les profs. Ou peut-être juste les notes d'exercices/projet ..?
 
 Lien vers mon repo : https://github.com/Tejante132/PPE1-2025.git 
@@ -319,7 +319,7 @@ Introduction aux différents [[flux d'entrée-sorties standard]] et [[redirectio
 Mes points de doute : 
 - [x] pas 100% sûre là comme ça de comment on utilise `<` (par contre les `>` sont bien clairs)  [completion:: 2025-10-08]
 	-> *exemple :* `wc < fic.txt` : on redirige le contenu du fichier `fic.txt` dans le stdin.
-- [ ] pour la [[redirection vers et depuis des fichiers]] : vérifier si la redirection de la sortie d'erreur se fait avec `&<`, `<&` ou les deux ?
+- [ ] pour la [[redirection vers et depuis des fichiers]] : vérifier si la redirection de la sortie d'erreur se fait avec `&<`, `<&` ou les deux ? ⏬
 - [x] `wc` : le nom laisse entendre que ça compte les mots, mais je crois qu'en réalité ça compte plutôt les lignes. Tester avec et sens option `-l`. ✅ 2025-11-06
 	- [[wc]] peut compter des mots ou des lignes selon l'option qu'on lui donne (respectivement `-w` et `-l`)
 
@@ -1563,7 +1563,7 @@ Moi j'avais tout mis sur une ligne quand j'utilisais echo (les balises les unes 
 ```
 
 - [x] tester le code remis en forme ✅ 2025-11-12
-- [ ] est-ce que les retours à la ligne marchent dans une commande `echo` classique ou bien est-ce que l'option`-e` est nécessaire ?
+- [ ] est-ce que les retours à la ligne marchent dans une commande `echo` classique ou bien est-ce que l'option`-e` est nécessaire ? ⏬
 
 J'ai essayé d'ajouter une gestion des informations non-trouvées (pas de code http → 000; pas d'encodage → N/A) 
 - [x] faire marcher ✅ 2025-11-12
@@ -1783,7 +1783,7 @@ J'ai fait un encart de titre à part avec titre et logo côte à côte (à utili
 - façon absolue de le faire ? → le souci c'est que si je mets un chemin "absolu" ça place par rapport à où la page est ouverte... pas l'air de marcher...
 
 **Pour une autre fois si j'ai du temps, je trouverais cool de chercher comment :**
-- [ ] hauteur de la page, ni plus ni moins (et que le reste soit scrollable)
+- [ ] hauteur de la page, ni plus ni moins (et que le reste soit scrollable) ⏬
 
 
 **Quelques problèmes rencontrés:**
@@ -1836,7 +1836,7 @@ Tout marche ! j'envoie le tag.
 
 ### [[expression régulière|Regex]]
 Je n'arrive pas à utiliser le marqueur `^` pour signifier u'une expression qui suit est à trouver en début d'une chaîne... idem pour `\b` et `\B`
-- [ ] quel est le souci ? `^`
+- [ ] quel est le souci ? `^` ⏬
 
 > /^qu / gm
 ^ asserts position at start of a line
@@ -1885,7 +1885,7 @@ Ce serait bien de pouvoir dire u'après ce n'est plus un numéro de téléphone.
 → renvoie clotildegg@gmail.com
 
 Des choses que j'ai essayées mais qui n'ont pas semblé marcher : `[a-z._]+@[a-z]+\.["com"|"fr"|"org"]` ni `[a-z._]+@[a-z]+\.[com|fr|org]`.
-- [ ] comment modifier ? peut-on suivre cette idée ?
+- [ ] comment modifier ? peut-on suivre cette idée ? ⏬
 
 
 *Toutes les formes du verbe manger*
@@ -1992,7 +1992,7 @@ semé ou récolté passait par mes mains. Les  d'h MOULINSuile, les
 ### Gestion d'erreurs sur git
 cf [[Git erreurs]] ([[git-intro_and_more.pdf#page=61&annotation=374R|git-intro_and_more, page 61]] ou [[git-more.pdf]])
 
-- [ ] Exos : [[git-more-exercices-nohelp.pdf]] 📅 2025-11-24
+- [ ] Exos : [[git-more-exercices-nohelp.pdf]] ⏬ 📅 2025-11-24
 
 Tue 25.11.2025
 On crée un conflit manuellement en faisant une modification différente du MAIN de git-along sur ma version locale et sur la version web.
@@ -2076,7 +2076,7 @@ chez moi :
 uv venv $HOME/NLP-venv
 ```
 
-- [ ] Peut-on déplacer un venv ? si par exemple je veux déplacer mon venv vers un dossier "venv".
+- [ ] Peut-on déplacer un venv ? si par exemple je veux déplacer mon venv vers un dossier "venv". ⏬
 
 Il faut choisir un dossier où on a les devoirs de lecture écriture, pas dans un dossier système. On doit juste pouvoir y avoir accès.
 
